@@ -1,0 +1,136 @@
+main {
+  display: flex;
+  padding-left: 8.40277778%;
+  padding-bottom: 30px;
+  width: 100%;
+  height: 100%;
+}
+main .left {
+  position: sticky;
+  margin-top: 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 75px;
+}
+main .left .content {
+  position: relative;
+  width: 100%;
+}
+main .left .content h1 {
+  font-size: 44px;
+  color: #1D1D1D;
+}
+main .left .content p {
+  font-size: 20px;
+  color: #1D1D1D;
+}
+main .left .content .faded {
+  margin-top: 10px;
+  font-weight: 400;
+  color: #8C8C8C;
+}
+main .left .content .header {
+  margin-top: 60px;
+}
+main .left .content .menu {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: stretch;
+  gap: 16px;
+}
+main .left .content .menu > div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  max-width: 138px;
+  max-height: 244px;
+  width: auto;
+  height: auto;
+}
+main .left .content .menu > div .blue-back {
+  background: #B4B7FF;
+}
+main .left .content .menu > div .green-back {
+  background: #97EAB9;
+}
+main .left .content .menu > div .yellow-back {
+  background: #FFD280;
+}
+main .left .content .menu > div .button {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 138px;
+  height: 36px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  align-self: stretch;
+  flex-grow: 1;
+  /* Text */
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #FF868E;
+}
+main .left .content .menu > div .button:hover {
+  transition: 0.2s;
+  background: #FBE0DC;
+}
+main .left .content .menu > div .button:hover + .icon {
+  transition: 0.2s;
+  border-color: #FFFFFF;
+}
+main .left .content .menu > div .button:active {
+  color: #FFFFFF;
+  background: #FF868E;
+}
+main .left .content .menu > div .button:active + .icon {
+  border-color: #FBE0DC;
+}
+main .left .content .menu > div .icon {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  width: 138px;
+  height: 198px;
+  border: 4px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+}
+main .left .content .menu > div .icon > img {
+  margin: auto;
+  width: available;
+  height: available;
+}
+main .right {
+  width: 100%;
+  justify-content: right;
+  margin-right: 8.40277778%;
+  display: flex;
+  position: relative;
+}
+main .right img {
+  max-height: 100%;
+  right: 0;
+  z-index: 1;
+  object-fit: contain;
+}
+main .right .background {
+  max-width: 80%;
+  position: absolute;
+  width: 680px;
+  height: 90%;
+  right: 20px;
+  top: 32px;
+  background: #FBE0DC;
+  border-radius: 20px;
+}
+/*# sourceMappingURL=home.css.map */

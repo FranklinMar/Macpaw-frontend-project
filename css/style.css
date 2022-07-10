@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Jost', sans-serif;
 }
 
 body, html {
@@ -15,3 +16,10 @@ body, html {
   min-width: 100vw;
 }
 
+button {
+  display: contents;
+}
+
+a {
+  text-decoration: none;
+}
