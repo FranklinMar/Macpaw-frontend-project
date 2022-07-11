@@ -1,4 +1,6 @@
 main {
+  --white: #FFFFFF;
+  --black: #1D1D1D;
   display: flex;
   padding-left: 8.40277778%;
   padding-bottom: 30px;
@@ -19,11 +21,11 @@ main .left .content {
 }
 main .left .content h1 {
   font-size: 44px;
-  color: #1D1D1D;
+  color: var(--black);
 }
 main .left .content p {
   font-size: 20px;
-  color: #1D1D1D;
+  color: va(--black);
 }
 main .left .content .faded {
   margin-top: 10px;
@@ -70,7 +72,7 @@ main .left .content .menu > div .button {
   gap: 10px;
   width: 138px;
   height: 36px;
-  background: #FFFFFF;
+  background: var(--white);
   border-radius: 10px;
   align-self: stretch;
   flex-grow: 1;
@@ -87,10 +89,10 @@ main .left .content .menu > div .button:hover {
 }
 main .left .content .menu > div .button:hover + .icon {
   transition: 0.2s;
-  border-color: #FFFFFF;
+  border-color: var(--white);
 }
 main .left .content .menu > div .button:active {
-  color: #FFFFFF;
+  color: var(--white);
   background: #FF868E;
 }
 main .left .content .menu > div .button:active + .icon {
@@ -133,4 +135,4 @@ main .right .background {
   background: #FBE0DC;
   border-radius: 20px;
 }
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=styles.css.map */

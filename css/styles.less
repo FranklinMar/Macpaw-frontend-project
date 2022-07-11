@@ -1,4 +1,8 @@
 main {
+  --white: #FFFFFF;
+  --black: #1D1D1D;
+
+
   display: flex;
   //justify-content: space-between;
   padding-left: 8.40277777778%;
@@ -21,12 +25,12 @@ main {
       h1 {
         font-size: 44px;
         //font-weight: 500;
-        color: #1D1D1D;
+        color: var(--black); //#1D1D1D;
       }
 
       p {
         font-size: 20px;
-        color: #1D1D1D;
+        color: va(--black); //#1D1D1D;
       }
 
       .faded {
@@ -85,7 +89,7 @@ main {
             width: 138px;
             height: 36px;
 
-            background: #FFFFFF;
+            background: var(--white); //#FFFFFF;
             border-radius: 10px;
             align-self: stretch;
             flex-grow: 1;
@@ -102,11 +106,11 @@ main {
               background: #FBE0DC;
               + .icon {
                 transition: 0.2s;
-                border-color: #FFFFFF;
+                border-color: var(--white);//#FFFFFF;
               }
             }
             &:active {
-              color: #FFFFFF;
+              color: var(--white);//#FFFFFF;
               background: #FF868E;
               + .icon {
                 border-color: #FBE0DC;
@@ -148,9 +152,11 @@ main {
       max-height: 100%;
       right: 0;
       z-index: 1;
+      //max-width: 775px;
       //width: 100%;
       //height: 100%;
       object-fit: contain;
+      //flex: 1 1 auto;
     }
 
     .background {
