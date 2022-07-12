@@ -19,27 +19,30 @@
         <h1>Hi intern!</h1>
         <p class="faded">Welcome to MI 2022 Front-end test</p>
         <p class="header">Lets start using The Cat API</p>
-        <div class="menu">
+        <div class="menu" id="menu">
           <div>
-            <div class="button">
+            <input id="voting-check" type="checkbox" name="group" />
+            <label for="voting-check" class="button">
               VOTING
-            </div>
+            </label>
             <div class="icon blue-back">
               <img src="img/voting.svg" alt="Voting">
             </div>
           </div>
           <div>
-            <div class="button">
+            <input id="breeds-check" type="checkbox" name="group" />
+            <label for="breeds-check" class="button">
               BREEDS
-            </div>
+            </label>
             <div class="icon green-back">
               <img src="img/breeds.png" alt="Breeds">
             </div>
           </div>
           <div>
-            <div class="button">
+            <input id="gallery-check" type="checkbox" name="group" />
+            <label for="gallery-check" class="button">
               GALLERY
-            </div>
+            </label>
             <div class="icon yellow-back">
               <img src="img/gallery.svg" alt="Gallery">
             </div>
@@ -48,9 +51,115 @@
       </div>
     </div>
     <div class="right">
-      <div class="background"></div>
-      <img src="img/girlcatbig.png" alt="Girl and pet">
+<!--      <div id="home">-->
+<!--        <div class="background">-->
+<!--          <img src="img/girlcatbig.png" alt="Girl and pet"></div>-->
+<!--      </div>-->
+      <div class="content">
+        <nav>
+          <div class="search">
+            <input id="search" name="search" type="text" placeholder="Search for breeds by name">
+            <div id="search-button" class="pink-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                <path fill="#FF868E" d="m19.36 18.217-4.76-4.95a8.05 8.05 0 0 0 1.895-5.192C16.495 3.623 12.873 0 8.42 0 3.968 0 .345 3.623.345 8.075c0 4.453 3.623 8.075 8.075 8.075a7.99 7.99 0 0 0 4.627-1.461l4.796 4.988c.2.208.47.323.759.323a1.054 1.054 0 0 0 .76-1.783ZM8.42 2.107a5.975 5.975 0 0 1 5.969 5.968 5.975 5.975 0 0 1-5.969 5.969 5.975 5.975 0 0 1-5.968-5.969A5.975 5.975 0 0 1 8.42 2.107Z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
+              <path fill="#FF868E" fill-rule="evenodd" d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM9.2 16.6l.6.8c2.6 3.467 7.8 3.467 10.4 0l.6-.8 1.6 1.2-.6.8c-3.4 4.533-10.2 4.533-13.6 0l-.6-.8 1.6-1.2Z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" fill="none" viewBox="0 0 30 26">
+              <path fill="#FF868E" fill-rule="evenodd" d="M8.071 2a6.071 6.071 0 0 0-4.293 10.364L15 23.586l11.222-11.222a6.071 6.071 0 1 0-8.586-8.586l-1.929 1.93a1 1 0 0 1-1.414 0l-1.929-1.93A6.071 6.071 0 0 0 8.071 2ZM0 8.071a8.071 8.071 0 0 1 13.778-5.707L15 3.586l1.222-1.222a8.071 8.071 0 0 1 11.414 11.414l-11.929 11.93a1 1 0 0 1-1.414 0L2.364 13.777A8.071 8.071 0 0 1 0 8.071Z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
+              <path fill="#FF868E" fill-rule="evenodd" d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM7.6 20.2l.6-.8c3.4-4.533 10.2-4.533 13.6 0l.6.8-1.6 1.2-.6-.8c-2.6-3.467-7.8-3.467-10.4 0l-.6.8-1.6-1.2Z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+        </nav>
+        <div class="main">
+          <div class="options">
+            <div class="pink-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 12 20">
+                <path fill="#FF868E" d="m.71 10.99 8.6 8.6a1.4 1.4 0 1 0 1.98-1.98L3.681 10l7.61-7.609A1.4 1.4 0 0 0 9.308.411L.71 9.01a1.396 1.396 0 0 0 0 1.98Z"/>
+              </svg>
+            </div>
+            <div class="label">
+              BREEDS
+            </div>
+            <select style="width: 100%">
+              <option value="All breeds">All breeds</option>
+              <option value="Abyssinian">Abyssinian</option>
+              <option value="Aegean">Aegean</option>
+              <option value="American Bobtail">American Bobtail</option>
+              <option value="American Bobtail">American Curl</option>
+              <option value="American Bobtail">American Shorthair</option>
+              <option value="American Bobtail">American Wirehair</option>
+            </select>
+            <select>
+              <option value="5">Limit: 5</option>
+              <option value="10">Limit: 10</option>
+              <option value="15">Limit: 15</option>
+              <option value="20">Limit: 20</option>
+            </select>
+            <!--<div class="button">
+            </div>
+            <div class="button">
+            </div>-->
+            <input id="sort-ascend" type="radio" name="sort" />
+            <label for="sort-ascend" class="sort-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="22" fill="none" viewBox="0 0 19 22">
+                <path fill="#8C8C8C" fill-rule="evenodd" d="M4 .213a.628.628 0 0 1 .943 0l4 4.36L8 5.6 5.138 2.482V21.8H3.805V2.481L.943 5.601 0 4.572l4-4.36Zm11.138 1.24c-1.104 0-2 .976-2 2.18v2.18h4v-2.18c0-1.204-.895-2.18-2-2.18Zm2 5.814v2.906h1.333v-6.54C18.471 1.627 16.98 0 15.138 0c-1.84 0-3.333 1.627-3.333 3.633v6.54h1.333V7.267h4Zm-5.333 4.36h4c1.473 0 2.666 1.301 2.666 2.906 0 .869-.349 1.648-.902 2.18a3.02 3.02 0 0 1 .902 2.18c0 1.606-1.194 2.907-2.666 2.907h-4V11.627Zm4 4.36c.736 0 1.333-.651 1.333-1.454 0-.802-.597-1.453-1.333-1.453h-2.667v2.907h2.667Zm-2.667 1.453h2.667c.736 0 1.333.65 1.333 1.453s-.597 1.454-1.333 1.454h-2.667V17.44Z" clip-rule="evenodd"/>
+              </svg>
+            </label>
+            <input id="sort-descend" type="radio" name="sort" />
+            <label for="sort-descend" class="sort-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="22" fill="none" viewBox="0 0 19 22">
+                <path fill="#8C8C8C" fill-rule="evenodd" d="M3.805 19.319V0h1.333v19.319L8 16.199l.943 1.028-4 4.36a.64.64 0 0 1-.472.213.64.64 0 0 1-.471-.213l-4-4.36.943-1.027 2.862 3.119ZM15.138 1.453c-1.104 0-2 .976-2 2.18v2.18h4v-2.18c0-1.204-.895-2.18-2-2.18Zm2 5.814v2.906h1.333v-6.54C18.471 1.627 16.98 0 15.138 0c-1.84 0-3.333 1.627-3.333 3.633v6.54h1.333V7.267h4Zm-5.333 4.36h4c1.473 0 2.666 1.301 2.666 2.906 0 .869-.349 1.648-.902 2.18a3.02 3.02 0 0 1 .902 2.18c0 1.606-1.194 2.907-2.666 2.907h-4V11.627Zm4 4.36c.736 0 1.333-.651 1.333-1.454 0-.802-.597-1.453-1.333-1.453h-2.667v2.907h2.667Zm-2.667 1.453h2.667c.736 0 1.333.65 1.333 1.453s-.597 1.454-1.333 1.454h-2.667V17.44Z" clip-rule="evenodd"/>
+              </svg>
+            </label>
+          </div>
+          <div class="grid">
+            <section>
+              <div class="column-small">
+                <div class="item">
+                  <div class="label">Hello</div>
+                </div>
+                <div class="item"></div>
+              </div>
+              <div class="column">
+                <div class="row">
+                  <div class="item"></div>
+                   <div class="item"></div>
+                </div>
+                <div class="item"></div>
+              </div>
+            </section>
+            <section>
+              <div class="column">
+                <div class="row">
+                  <div class="item"></div>
+                  <div class="item"></div>
+                </div>
+                <div class="item"></div>
+              </div>
+              <div class="column-small">
+                <div class="item">
+                  <div class="label">Hello</div>
+                </div>
+                <div class="item"></div>
+              </div>
+            </section>
+          </div>
+<!--          <div class="footer"></div>-->
+        </div>
+      </div>
     </div>
   </main>
+  <script src="js/script.js"></script>
 </body>
 </html>
