@@ -15,6 +15,9 @@ function buttonsListener() {
             document.getElementById('breeds').style.display = "flex";
         }
     } else {
+        for (let button of buttons) {
+            button.checked = false;
+        }
         document.getElementById('breeds').style.display = "none";
         home.style.display = "initial";
     }
