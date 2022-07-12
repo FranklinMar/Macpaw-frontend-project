@@ -11,8 +11,12 @@ function buttonsListener() {
     check = this;
     if (this.checked) {
         home.style.display = "none";
+        if (document.getElementById('breeds-check').checked) {
+            document.getElementById('breeds').style.display = "flex";
+        }
     } else {
-        home.style.display = "contents";
+        document.getElementById('breeds').style.display = "none";
+        home.style.display = "initial";
     }
 }
 
