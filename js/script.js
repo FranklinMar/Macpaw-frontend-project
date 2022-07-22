@@ -25,7 +25,7 @@ function buttonsListener() {
         check.checked = false;
     }
 
-    for (let i of document.querySelectorAll(".gallery-selector, .breeds-selector")) {
+    for (let i of document.querySelectorAll(".gallery-selector, .breeds-selector, .voting-selector")) {
         i.style.display = "none";
     }
     //console.log("worked");

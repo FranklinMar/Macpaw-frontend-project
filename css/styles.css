@@ -120,6 +120,13 @@ main .right {
   justify-content: right;
   display: flex;
   position: relative;
+  /*.gallery-selector {
+      display: none;
+    }
+
+    .voting-selector {
+      display: none;
+    }*/
 }
 main .right .background {
   position: relative;
@@ -484,6 +491,129 @@ main .right .content .main .gallery-grid .grid-item select {
   font-size: 16px;
   color: #1D1D1D;
 }
+main .right .content .main .page {
+  display: block;
+  max-width: inherit;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+main .right .content .main .page > img {
+  max-width: inherit;
+  max-height: 360px;
+  height: 360px;
+  width: 100%;
+  object-fit: cover;
+  background: #8C8C8C;
+  border-radius: 20px;
+}
+main .right .content .main .page .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 248px;
+  width: 100%;
+  height: 80px;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 318px;
+  background: #FFFFFF;
+  border: 4px solid #FFFFFF;
+  border-radius: 20px;
+}
+main .right .content .main .page .buttons .button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 80px;
+  width: 100%;
+  min-width: min-content;
+  height: 80px;
+  background: rgba(var(--buttonSrc), 1);
+}
+main .right .content .main .page .buttons .button > svg > path {
+  fill: var(--white);
+  d: var(--d);
+}
+main .right .content .main .page .buttons .button:hover {
+  transition: 0.2s;
+  background: rgba(var(--buttonSrc), 0.3);
+}
+main .right .content .main .page .buttons .button:hover > svg > path {
+  fill: rgb(var(--buttonSrc));
+}
+main .right .content .main .page .buttons .button:active {
+  transition: 0s;
+  background: rgb(var(--buttonSrc));
+}
+main .right .content .main .page .buttons .button:active > svg > path {
+  fill: var(--white);
+  d: var(--dActive, var(--d));
+}
+main .right .content .main .page .buttons .button:first-child {
+  border-radius: 20px 0 0 20px;
+}
+main .right .content .main .page .buttons .button:last-child {
+  border-radius: 0 20px 20px 0;
+}
+main .right .content .main .page .logs {
+  margin-top: 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: inherit;
+  width: 100%;
+}
+main .right .content .main .page .logs .log {
+  height: 60px;
+  width: 100%;
+  padding: 0 20px 0 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: stretch;
+  background: #F8F8F7;
+}
+main .right .content .main .page .logs .log > strong {
+  background: var(--white);
+  border-radius: 5px;
+  max-width: 61px;
+  width: 100%;
+  min-width: fit-content;
+  height: 30px;
+  text-align: center;
+  /* Text */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--black);
+  line-height: 30px;
+}
+main .right .content .main .page .logs .log > p {
+  width: 100%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #8C8C8C;
+}
+main .right .content .main .page .logs .log > p span {
+  font-weight: 500;
+  color: var(--black);
+}
+main .right .content .main .page .logs .log > svg {
+  max-width: 20px;
+  max-height: 20px;
+}
+main .right .content .main .page .logs .log > svg > path {
+  fill: var(--background);
+}
 main .right .content .main .grid {
   display: flex;
   flex-direction: column;
@@ -503,7 +633,7 @@ main .right .content .main .grid > section {
   max-width: inherit;
   width: 100%;
   height: 460px;
-  grid-template-areas: "item-1 item-3 item-4" "item-1 item-5 item-5" "item-2 item-5 item-5";
+  grid-template-areas: "item-1 item-2 item-3" "item-1 item-5 item-5" "item-4 item-5 item-5";
   /*
             &:first-child { grid-area: 1 / 1 / 3 / 2; }
             &:nth-child(2) { grid-area: 3 / 1 / 4 / 2; }
@@ -513,7 +643,7 @@ main .right .content .main .grid > section {
             */
 }
 main .right .content .main .grid > section[reverse] {
-  grid-template-areas: "item-1 item-2 item-4" "item-3 item-3 item-4" "item-3 item-3 item-5";
+  grid-template-areas: "item-1 item-2 item-3" "item-4 item-4 item-3" "item-4 item-4 item-5";
 }
 main .right .content .main .grid > section .item {
   cursor: pointer;
@@ -614,23 +744,22 @@ main .right .content .main .footer button:disabled span {
 main .right .content .main .footer button:disabled svg path {
   fill: #8C8C8C;
 }
-main .right .content .main .footer button:hover {
+main .right .content .main .footer button:hover:enabled {
   transition: 0.2s;
   background: #FF868E;
 }
-main .right .content .main .footer button:hover span {
+main .right .content .main .footer button:hover:enabled span {
   color: var(--white);
 }
-main .right .content .main .footer button:hover svg path {
+main .right .content .main .footer button:hover:enabled svg path {
   fill: var(--white);
 }
 main .right #content {
   display: none;
 }
-main .right .breeds-selector {
-  display: none;
-}
-main .right .gallery-selector {
+main .right .breeds-selector,
+main .right .gallery-selector,
+main .right .voting-selector {
   display: none;
 }
 /*# sourceMappingURL=styles.css.map */
