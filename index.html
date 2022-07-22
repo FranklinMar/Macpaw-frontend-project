@@ -5,261 +5,293 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 </head>
 <body>
-  <main>
-    <div class="left">
-      <nav>
-        <img src="img/logo.svg" alt="Logo">
-        <img src="img/petspaw.svg" alt="PetsPaw">
-      </nav>
-      <div class="content">
-        <h1>Hi intern!</h1>
-        <p class="faded">Welcome to MI 2022 Front-end test</p>
-        <p class="header">Lets start using The Cat API</p>
-        <div class="menu" id="menu">
-          <div>
-            <input id="voting-check" type="checkbox" name="group" />
-            <label for="voting-check" class="button">
-              VOTING
-            </label>
-            <div class="icon blue-back">
-              <img src="img/voting.svg" alt="Voting">
-            </div>
+<main>
+  <div class="left">
+    <nav>
+      <img src="img/logo.svg" alt="Logo">
+      <img src="img/petspaw.svg" alt="PetsPaw">
+    </nav>
+    <div class="content">
+      <h1>Hi intern!</h1>
+      <p class="faded">Welcome to MI 2022 Front-end test</p>
+      <p class="header">Lets start using The Cat API</p>
+      <div class="menu" id="menu">
+        <div>
+          <input id="voting-check" type="checkbox" name="group"/>
+          <label for="voting-check" class="button">
+            VOTING
+          </label>
+          <div class="icon blue-back">
+            <img src="img/voting.svg" alt="Voting">
           </div>
-          <div>
-            <input id="breeds-check" type="checkbox" name="group" />
-            <label for="breeds-check" class="button">
-              BREEDS
-            </label>
-            <div class="icon green-back">
-              <img src="img/breeds.png" alt="Breeds">
-            </div>
+        </div>
+        <div>
+          <input id="breeds-check" type="checkbox" name="group"/>
+          <label for="breeds-check" class="button">
+            BREEDS
+          </label>
+          <div class="icon green-back">
+            <img src="img/breeds.png" alt="Breeds">
           </div>
-          <div>
-            <input id="gallery-check" type="checkbox" name="group" />
-            <label for="gallery-check" class="button">
-              GALLERY
-            </label>
-            <div class="icon yellow-back">
-              <img src="img/gallery.svg" alt="Gallery">
-            </div>
+        </div>
+        <div>
+          <input id="gallery-check" type="checkbox" name="group"/>
+          <label for="gallery-check" class="button">
+            GALLERY
+          </label>
+          <div class="icon yellow-back">
+            <img src="img/gallery.svg" alt="Gallery">
           </div>
         </div>
       </div>
     </div>
-    <div class="right">
-<!--      <div id="home">-->
-        <div class="background" id="home">
-          <img src="img/girlcatbig.png" alt="Girl and pet">
+  </div>
+  <div class="right">
+    <!--      <div id="home">-->
+    <div class="background" id="home">
+      <img src="img/girlcatbig.png" alt="Girl and pet">
+    </div>
+    <!--      </div>-->
+    <div class="content" id="content">
+      <nav>
+        <div class="search">
+          <input id="search" name="search" type="text" placeholder="Search for breeds by name">
+          <div id="search-button" class="pink-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
+              <path fill="#FF868E"
+                    d="m19.36 18.217-4.76-4.95a8.05 8.05 0 0 0 1.895-5.192C16.495 3.623 12.873 0 8.42 0 3.968 0 .345 3.623.345 8.075c0 4.453 3.623 8.075 8.075 8.075a7.99 7.99 0 0 0 4.627-1.461l4.796 4.988c.2.208.47.323.759.323a1.054 1.054 0 0 0 .76-1.783ZM8.42 2.107a5.975 5.975 0 0 1 5.969 5.968 5.975 5.975 0 0 1-5.969 5.969 5.975 5.975 0 0 1-5.968-5.969A5.975 5.975 0 0 1 8.42 2.107Z"/>
+            </svg>
+          </div>
         </div>
-<!--      </div>-->
-      <div class="content" id="content">
-        <nav>
-          <div class="search">
-            <input id="search" name="search" type="text" placeholder="Search for breeds by name">
-            <div id="search-button" class="pink-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
-                <path fill="#FF868E" d="m19.36 18.217-4.76-4.95a8.05 8.05 0 0 0 1.895-5.192C16.495 3.623 12.873 0 8.42 0 3.968 0 .345 3.623.345 8.075c0 4.453 3.623 8.075 8.075 8.075a7.99 7.99 0 0 0 4.627-1.461l4.796 4.988c.2.208.47.323.759.323a1.054 1.054 0 0 0 .76-1.783ZM8.42 2.107a5.975 5.975 0 0 1 5.969 5.968 5.975 5.975 0 0 1-5.969 5.969 5.975 5.975 0 0 1-5.968-5.969A5.975 5.975 0 0 1 8.42 2.107Z"/>
+        <div class="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
+            <path fill="#FF868E" fill-rule="evenodd"
+                  d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM9.2 16.6l.6.8c2.6 3.467 7.8 3.467 10.4 0l.6-.8 1.6 1.2-.6.8c-3.4 4.533-10.2 4.533-13.6 0l-.6-.8 1.6-1.2Z"
+                  clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 26">
+            <!--height="26"-->
+            <path fill="#FF868E" fill-rule="evenodd"
+                  d="M8.071 2a6.071 6.071 0 0 0-4.293 10.364L15 23.586l11.222-11.222a6.071 6.071 0 1 0-8.586-8.586l-1.929 1.93a1 1 0 0 1-1.414 0l-1.929-1.93A6.071 6.071 0 0 0 8.071 2ZM0 8.071a8.071 8.071 0 0 1 13.778-5.707L15 3.586l1.222-1.222a8.071 8.071 0 0 1 11.414 11.414l-11.929 11.93a1 1 0 0 1-1.414 0L2.364 13.777A8.071 8.071 0 0 1 0 8.071Z"
+                  clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
+            <path fill="#FF868E" fill-rule="evenodd"
+                  d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM7.6 20.2l.6-.8c3.4-4.533 10.2-4.533 13.6 0l.6.8-1.6 1.2-.6-.8c-2.6-3.467-7.8-3.467-10.4 0l-.6.8-1.6-1.2Z"
+                  clip-rule="evenodd"/>
+          </svg>
+        </div>
+      </nav>
+      <div class="main">
+        <div class="options">
+          <div>
+            <div class="pink-button" onclick="check = null; buttonsListener();">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                  viewBox="0 0 12 20">
+                <path fill="#FF868E"
+                      d="m.71 10.99 8.6 8.6a1.4 1.4 0 1 0 1.98-1.98L3.681 10l7.61-7.609A1.4 1.4 0 0 0 9.308.411L.71 9.01a1.396 1.396 0 0 0 0 1.98Z"/>
               </svg>
             </div>
-          </div>
-          <div class="button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
-              <path fill="#FF868E" fill-rule="evenodd" d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM9.2 16.6l.6.8c2.6 3.467 7.8 3.467 10.4 0l.6-.8 1.6 1.2-.6.8c-3.4 4.533-10.2 4.533-13.6 0l-.6-.8 1.6-1.2Z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-          <div class="button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 26"> <!--height="26"-->
-                <path fill="#FF868E" fill-rule="evenodd" d="M8.071 2a6.071 6.071 0 0 0-4.293 10.364L15 23.586l11.222-11.222a6.071 6.071 0 1 0-8.586-8.586l-1.929 1.93a1 1 0 0 1-1.414 0l-1.929-1.93A6.071 6.071 0 0 0 8.071 2ZM0 8.071a8.071 8.071 0 0 1 13.778-5.707L15 3.586l1.222-1.222a8.071 8.071 0 0 1 11.414 11.414l-11.929 11.93a1 1 0 0 1-1.414 0L2.364 13.777A8.071 8.071 0 0 1 0 8.071Z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-          <div class="button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
-              <path fill="#FF868E" fill-rule="evenodd" d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM7.6 20.2l.6-.8c3.4-4.533 10.2-4.533 13.6 0l.6.8-1.6 1.2-.6-.8c-2.6-3.467-7.8-3.467-10.4 0l-.6.8-1.6-1.2Z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-        </nav>
-        <div class="main">
-          <div class="options">
-            <div>
-              <div class="pink-button" onclick="check = null; buttonsListener();">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 12 20">
-                  <path fill="#FF868E" d="m.71 10.99 8.6 8.6a1.4 1.4 0 1 0 1.98-1.98L3.681 10l7.61-7.609A1.4 1.4 0 0 0 9.308.411L.71 9.01a1.396 1.396 0 0 0 0 1.98Z"/>
-                </svg>
-              </div>
-              <div class="label" id="title">
-  <!--              BREEDS-->
-              </div>
+            <div class="label" id="title">
+              <!--              BREEDS-->
             </div>
-            <select class="breeds-selector">
-              <option value="All breeds">All breeds</option>
-              <option value="Abyssinian">Abyssinian</option>
-              <option value="Aegean">Aegean</option>
-              <option value="American Bobtail">American Bobtail</option>
-              <option value="American Bobtail">American Curl</option>
-              <option value="American Bobtail">American Shorthair</option>
-              <option value="American Bobtail">American Wirehair</option>
-            </select>
-            <select class="breeds-selector" onchange="limitSelect(this)"> <!--id="limit" -->
-              <option value="1">Limit: 5</option>
-              <option value="2">Limit: 10</option>
-              <option value="3">Limit: 15</option>
-              <option value="4">Limit: 20</option>
-            </select>
-            <!--<div class="button">
-            </div>
-            <div class="button">
-            </div>-->
-            <input id="sort-ascend" type="radio" name="sort" />
-            <label for="sort-ascend" class="sort-button breeds-selector">
-              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="22" fill="none" viewBox="0 0 19 22">
-                <path fill="#8C8C8C" fill-rule="evenodd" d="M4 .213a.628.628 0 0 1 .943 0l4 4.36L8 5.6 5.138 2.482V21.8H3.805V2.481L.943 5.601 0 4.572l4-4.36Zm11.138 1.24c-1.104 0-2 .976-2 2.18v2.18h4v-2.18c0-1.204-.895-2.18-2-2.18Zm2 5.814v2.906h1.333v-6.54C18.471 1.627 16.98 0 15.138 0c-1.84 0-3.333 1.627-3.333 3.633v6.54h1.333V7.267h4Zm-5.333 4.36h4c1.473 0 2.666 1.301 2.666 2.906 0 .869-.349 1.648-.902 2.18a3.02 3.02 0 0 1 .902 2.18c0 1.606-1.194 2.907-2.666 2.907h-4V11.627Zm4 4.36c.736 0 1.333-.651 1.333-1.454 0-.802-.597-1.453-1.333-1.453h-2.667v2.907h2.667Zm-2.667 1.453h2.667c.736 0 1.333.65 1.333 1.453s-.597 1.454-1.333 1.454h-2.667V17.44Z" clip-rule="evenodd"/>
-              </svg>
-            </label>
-            <input id="sort-descend" type="radio" name="sort" />
-            <label for="sort-descend" class="sort-button breeds-selector">
-              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="22" fill="none" viewBox="0 0 19 22">
-                <path fill="#8C8C8C" fill-rule="evenodd" d="M3.805 19.319V0h1.333v19.319L8 16.199l.943 1.028-4 4.36a.64.64 0 0 1-.472.213.64.64 0 0 1-.471-.213l-4-4.36.943-1.027 2.862 3.119ZM15.138 1.453c-1.104 0-2 .976-2 2.18v2.18h4v-2.18c0-1.204-.895-2.18-2-2.18Zm2 5.814v2.906h1.333v-6.54C18.471 1.627 16.98 0 15.138 0c-1.84 0-3.333 1.627-3.333 3.633v6.54h1.333V7.267h4Zm-5.333 4.36h4c1.473 0 2.666 1.301 2.666 2.906 0 .869-.349 1.648-.902 2.18a3.02 3.02 0 0 1 .902 2.18c0 1.606-1.194 2.907-2.666 2.907h-4V11.627Zm4 4.36c.736 0 1.333-.651 1.333-1.454 0-.802-.597-1.453-1.333-1.453h-2.667v2.907h2.667Zm-2.667 1.453h2.667c.736 0 1.333.65 1.333 1.453s-.597 1.454-1.333 1.454h-2.667V17.44Z" clip-rule="evenodd"/>
-              </svg>
-            </label>
-            <div class="button gallery-selector">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                <path fill="#FF868E" fill-rule="evenodd" d="m7.866 0 4.37 4.033-.823.892-2.924-2.7v10.137H7.276V2.305L4.673 4.908l-.857-.858L7.866 0ZM1.213 14.787V7.511H0V16h15.766V7.51h-1.213v7.277H1.213Z" clip-rule="evenodd"/>
-              </svg>
-              <span>
+          </div>
+          <select class="breeds-selector">
+            <option value="All breeds">All breeds</option>
+            <option value="Abyssinian">Abyssinian</option>
+            <option value="Aegean">Aegean</option>
+            <option value="American Bobtail">American Bobtail</option>
+            <option value="American Bobtail">American Curl</option>
+            <option value="American Bobtail">American Shorthair</option>
+            <option value="American Bobtail">American Wirehair</option>
+          </select>
+          <select class="breeds-selector" onchange="limitSelect(this)"> <!--id="limit" -->
+            <option value="1">Limit: 5</option>
+            <option value="2">Limit: 10</option>
+            <option value="3">Limit: 15</option>
+            <option value="4">Limit: 20</option>
+          </select>
+          <!--<div class="button">
+          </div>
+          <div class="button">
+          </div>-->
+          <input id="sort-ascend" type="radio" name="sort"/>
+          <label for="sort-ascend" class="sort-button breeds-selector">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="22" fill="none" viewBox="0 0 19 22">
+              <path fill="#8C8C8C" fill-rule="evenodd"
+                    d="M4 .213a.628.628 0 0 1 .943 0l4 4.36L8 5.6 5.138 2.482V21.8H3.805V2.481L.943 5.601 0 4.572l4-4.36Zm11.138 1.24c-1.104 0-2 .976-2 2.18v2.18h4v-2.18c0-1.204-.895-2.18-2-2.18Zm2 5.814v2.906h1.333v-6.54C18.471 1.627 16.98 0 15.138 0c-1.84 0-3.333 1.627-3.333 3.633v6.54h1.333V7.267h4Zm-5.333 4.36h4c1.473 0 2.666 1.301 2.666 2.906 0 .869-.349 1.648-.902 2.18a3.02 3.02 0 0 1 .902 2.18c0 1.606-1.194 2.907-2.666 2.907h-4V11.627Zm4 4.36c.736 0 1.333-.651 1.333-1.454 0-.802-.597-1.453-1.333-1.453h-2.667v2.907h2.667Zm-2.667 1.453h2.667c.736 0 1.333.65 1.333 1.453s-.597 1.454-1.333 1.454h-2.667V17.44Z"
+                    clip-rule="evenodd"/>
+            </svg>
+          </label>
+          <input id="sort-descend" type="radio" name="sort"/>
+          <label for="sort-descend" class="sort-button breeds-selector">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="22" fill="none" viewBox="0 0 19 22">
+              <path fill="#8C8C8C" fill-rule="evenodd"
+                    d="M3.805 19.319V0h1.333v19.319L8 16.199l.943 1.028-4 4.36a.64.64 0 0 1-.472.213.64.64 0 0 1-.471-.213l-4-4.36.943-1.027 2.862 3.119ZM15.138 1.453c-1.104 0-2 .976-2 2.18v2.18h4v-2.18c0-1.204-.895-2.18-2-2.18Zm2 5.814v2.906h1.333v-6.54C18.471 1.627 16.98 0 15.138 0c-1.84 0-3.333 1.627-3.333 3.633v6.54h1.333V7.267h4Zm-5.333 4.36h4c1.473 0 2.666 1.301 2.666 2.906 0 .869-.349 1.648-.902 2.18a3.02 3.02 0 0 1 .902 2.18c0 1.606-1.194 2.907-2.666 2.907h-4V11.627Zm4 4.36c.736 0 1.333-.651 1.333-1.454 0-.802-.597-1.453-1.333-1.453h-2.667v2.907h2.667Zm-2.667 1.453h2.667c.736 0 1.333.65 1.333 1.453s-.597 1.454-1.333 1.454h-2.667V17.44Z"
+                    clip-rule="evenodd"/>
+            </svg>
+          </label>
+          <div class="button gallery-selector">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+              <path fill="#FF868E" fill-rule="evenodd"
+                    d="m7.866 0 4.37 4.033-.823.892-2.924-2.7v10.137H7.276V2.305L4.673 4.908l-.857-.858L7.866 0ZM1.213 14.787V7.511H0V16h15.766V7.51h-1.213v7.277H1.213Z"
+                    clip-rule="evenodd"/>
+            </svg>
+            <span>
                 UPLOAD
               </span>
-            </div>
           </div>
-          <div class="gallery-grid gallery-selector">
-            <div class="grid-item">
-              <span>ORDER</span>
-              <select>
-                <option value="Random">Random</option>
-                <option value="Desc">Desc</option>
-                <option value="Asc">Asc</option>
-<!--                <option value="Descending">Descending</option>-->
-<!--                <option value="Ascending">Ascending</option>-->
-              </select>
-            </div>
-            <div class="grid-item">
-              <span>TYPE</span>
-              <select>
-                <option value="All">All</option>
-                <option value="Static">Random</option>
-                <option value="Animated">Animated</option>
-              </select>
-            </div>
-            <div class="grid-item">
-              <span>BREED</span>
-              <select>
-                <option value="None">None</option>
-                <option value="Abyssinian">Abyssinian</option>
-                <option value="Bengal">Bengal</option>
-                <option value="Agean">Agean</option>
-                <option value="American Bobtail">American Bobtail</option>
-                <option value="American Shorthair">American Shorthair</option>
-                <option value="American Wirehair">American Wirehair</option>
-              </select>
-            </div>
-            <div class="grid-item">
-              <span>LIMIT</span>
-              <select onchange="limitSelect(this)">
-                <option value="1">5 items per page</option>
-                <option value="2">10 items per page</option>
-                <option value="3">15 items per page</option>
-                <option value="4">20 items per page</option>
-              </select>
-            </div>
-          </div>
-          <div class="page voting-selector">
-            <img src="https://cdn2.thecatapi.com/images/Qd7gk3040.jpg" alt="">
-            <div class="buttons">
-              <div class="button" style="--buttonSrc: 151, 234, 185;/*#97EAB9;*/ --d: path('M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM9.2 16.6l.6.8c2.6 3.467 7.8 3.467 10.4 0l.6-.8 1.6 1.2-.6.8c-3.4 4.533-10.2 4.533-13.6 0l-.6-.8 1.6-1.2Z');">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
-                  <path fill="#FF868E" d="" fill-rule="evenodd" clip-rule="evenodd"/>
-                </svg>
-              </div>
-              <div class="button" style="--buttonSrc: 255, 134, 142; --d: path('M8.071 2a6.071 6.071 0 0 0-4.293 10.364L15 23.586l11.222-11.222a6.071 6.071 0 1 0-8.586-8.586l-1.929 1.93a1 1 0 0 1-1.414 0l-1.929-1.93A6.071 6.071 0 0 0 8.071 2ZM0 8.071a8.071 8.071 0 0 1 13.778-5.707L15 3.586l1.222-1.222a8.071 8.071 0 0 1 11.414 11.414l-11.929 11.93a1 1 0 0 1-1.414 0L2.364 13.777A8.071 8.071 0 0 1 0 8.071Z');
-              --dActive: path('M8.071 0a8.071 8.071 0 0 0-5.707 13.778l11.929 11.93a1 1 0 0 0 1.414 0l11.929-11.93A8.07 8.07 0 1 0 16.222 2.364L15 3.586l-1.222-1.222A8.071 8.071 0 0 0 8.071 0Z'); /*#FF868E;*/">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" fill="none" viewBox="0 0 30 26">
-                  <path fill="#FF868E" d="" fill-rule="evenodd" clip-rule="evenodd"/>
-                </svg>
-              </div>
-              <div class="button" style="--buttonSrc: 255, 210, 128;/*#FFD280;*/ --d: path('M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM7.6 20.2l.6-.8c3.4-4.533 10.2-4.533 13.6 0l.6.8-1.6 1.2-.6-.8c-2.6-3.467-7.8-3.467-10.4 0l-.6.8-1.6-1.2Z');">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
-                  <path fill="#FF868E" d="" fill-rule="evenodd" clip-rule="evenodd"/>
-                </svg>
-              </div>
-            </div>
-            <div class="logs">
-              <div class="log">
-                <strong>22:35</strong>
-                <p>Image ID: <span>fQSunHvl8</span> was added to Favourites</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" fill="none" viewBox="0 0 30 26"
-                    style="--background: #FF868E;">
-                  <path fill="#FF868E" fill-rule="evenodd" d="M8.071 2a6.071 6.071 0 0 0-4.293 10.364L15 23.586l11.222-11.222a6.071 6.071 0 1 0-8.586-8.586l-1.929 1.93a1 1 0 0 1-1.414 0l-1.929-1.93A6.071 6.071 0 0 0 8.071 2ZM0 8.071a8.071 8.071 0 0 1 13.778-5.707L15 3.586l1.222-1.222a8.071 8.071 0 0 1 11.414 11.414l-11.929 11.93a1 1 0 0 1-1.414 0L2.364 13.777A8.071 8.071 0 0 1 0 8.071Z" clip-rule="evenodd"/>
-                </svg>
-              </div>
-              <div class="log">
-                <strong>22:27</strong>
-                <p>Image ID: <span>HJd0XecNX</span> was added to Likes</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30"
-                    style="--background: #97EAB9;">
-                  <path fill="#FF868E" fill-rule="evenodd" d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM9.2 16.6l.6.8c2.6 3.467 7.8 3.467 10.4 0l.6-.8 1.6 1.2-.6.8c-3.4 4.533-10.2 4.533-13.6 0l-.6-.8 1.6-1.2Z" clip-rule="evenodd"/>
-                </svg>
-              </div>
-              <div class="log">
-                <strong>22:21</strong>
-                <p>Image ID: <span>BbMFS3bU-</span> was added to Dislikes</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30"
-                    style="--background: #FFD280;">
-                  <path fill="#FF868E" fill-rule="evenodd" d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM7.6 20.2l.6-.8c3.4-4.533 10.2-4.533 13.6 0l.6.8-1.6 1.2-.6-.8c-2.6-3.467-7.8-3.467-10.4 0l-.6.8-1.6-1.2Z" clip-rule="evenodd"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="grid breeds-selector gallery-selector">
-            <section>
-              <div class="item">
-                <div class="label"></div><!--Hello-->
-              </div>
-              <div class="item">
-                <div class="label"></div>
-              </div>
-              <div class="item">
-                <div class="label"></div>
-              </div>
-              <div class="item">
-                <div class="label"></div>
-              </div>
-              <div class="item">
-                <div class="label"></div>
-              </div>
-            </section>
-          </div>
-          <div class="footer breeds-selector gallery-selector">
-            <button disabled>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                <path fill="#FF868E" d="M10 14a.996.996 0 0 1-.707-.293l-5-5a1 1 0 0 1 0-1.414l5-5a1 1 0 1 1 1.414 1.414L6.414 8l4.294 4.294A1 1 0 0 1 10 14Z"/>
-              </svg>
-              <span>PREV</span>
-            </button>
-            <button>
-              <span>NEXT</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                <path fill="#FF868E" d="M6 2c.256 0 .512.098.707.293l5 5a1 1 0 0 1 0 1.414l-5 5a1 1 0 1 1-1.414-1.414L9.586 8 5.292 3.706A1 1 0 0 1 6 2Z"/>
-              </svg>
-            </button>
-          </div>
-<!--          <div class="footer"></div>-->
         </div>
+        <div class="gallery-grid gallery-selector">
+          <div class="grid-item">
+            <span>ORDER</span>
+            <select>
+              <option value="Random">Random</option>
+              <option value="Desc">Desc</option>
+              <option value="Asc">Asc</option>
+              <!--                <option value="Descending">Descending</option>-->
+              <!--                <option value="Ascending">Ascending</option>-->
+            </select>
+          </div>
+          <div class="grid-item">
+            <span>TYPE</span>
+            <select>
+              <option value="All">All</option>
+              <option value="Static">Random</option>
+              <option value="Animated">Animated</option>
+            </select>
+          </div>
+          <div class="grid-item">
+            <span>BREED</span>
+            <select>
+              <option value="None">None</option>
+              <option value="Abyssinian">Abyssinian</option>
+              <option value="Bengal">Bengal</option>
+              <option value="Agean">Agean</option>
+              <option value="American Bobtail">American Bobtail</option>
+              <option value="American Shorthair">American Shorthair</option>
+              <option value="American Wirehair">American Wirehair</option>
+            </select>
+          </div>
+          <div class="grid-item">
+            <span>LIMIT</span>
+            <select onchange="limitSelect(this)">
+              <option value="1">5 items per page</option>
+              <option value="2">10 items per page</option>
+              <option value="3">15 items per page</option>
+              <option value="4">20 items per page</option>
+            </select>
+          </div>
+        </div>
+        <div class="page voting-selector">
+          <img src="https://cdn2.thecatapi.com/images/Qd7gk3040.jpg" alt="">
+          <div class="buttons">
+            <div class="button"
+                style="--buttonSrc: 151, 234, 185;/*#97EAB9;*/ --d: path('M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM9.2 16.6l.6.8c2.6 3.467 7.8 3.467 10.4 0l.6-.8 1.6 1.2-.6.8c-3.4 4.533-10.2 4.533-13.6 0l-.6-.8 1.6-1.2Z');">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none"
+                  viewBox="0 0 30 30">
+                <path fill="#FF868E" d="" fill-rule="evenodd" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="button" style="--buttonSrc: 255, 134, 142; --d: path('M8.071 2a6.071 6.071 0 0 0-4.293 10.364L15 23.586l11.222-11.222a6.071 6.071 0 1 0-8.586-8.586l-1.929 1.93a1 1 0 0 1-1.414 0l-1.929-1.93A6.071 6.071 0 0 0 8.071 2ZM0 8.071a8.071 8.071 0 0 1 13.778-5.707L15 3.586l1.222-1.222a8.071 8.071 0 0 1 11.414 11.414l-11.929 11.93a1 1 0 0 1-1.414 0L2.364 13.777A8.071 8.071 0 0 1 0 8.071Z');
+              --dActive: path('M8.071 0a8.071 8.071 0 0 0-5.707 13.778l11.929 11.93a1 1 0 0 0 1.414 0l11.929-11.93A8.07 8.07 0 1 0 16.222 2.364L15 3.586l-1.222-1.222A8.071 8.071 0 0 0 8.071 0Z'); /*#FF868E;*/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" fill="none"
+                  viewBox="0 0 30 26">
+                <path fill="#FF868E" d="" fill-rule="evenodd" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="button"
+                style="--buttonSrc: 255, 210, 128;/*#FFD280;*/ --d: path('M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM7.6 20.2l.6-.8c3.4-4.533 10.2-4.533 13.6 0l.6.8-1.6 1.2-.6-.8c-2.6-3.467-7.8-3.467-10.4 0l-.6.8-1.6-1.2Z');">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none"
+                  viewBox="0 0 30 30">
+                <path fill="#FF868E" d="" fill-rule="evenodd" clip-rule="evenodd"/>
+              </svg>
+            </div>
+          </div>
+          <div class="logs">
+            <div class="log">
+              <strong>22:35</strong>
+              <p>Image ID: <span>fQSunHvl8</span> was added to Favourites</p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" fill="none"
+                  viewBox="0 0 30 26"
+                  style="--background: #FF868E;">
+                <path fill="#FF868E" fill-rule="evenodd"
+                      d="M8.071 2a6.071 6.071 0 0 0-4.293 10.364L15 23.586l11.222-11.222a6.071 6.071 0 1 0-8.586-8.586l-1.929 1.93a1 1 0 0 1-1.414 0l-1.929-1.93A6.071 6.071 0 0 0 8.071 2ZM0 8.071a8.071 8.071 0 0 1 13.778-5.707L15 3.586l1.222-1.222a8.071 8.071 0 0 1 11.414 11.414l-11.929 11.93a1 1 0 0 1-1.414 0L2.364 13.777A8.071 8.071 0 0 1 0 8.071Z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="log">
+              <strong>22:27</strong>
+              <p>Image ID: <span>HJd0XecNX</span> was added to Likes</p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none"
+                  viewBox="0 0 30 30"
+                  style="--background: #97EAB9;">
+                <path fill="#FF868E" fill-rule="evenodd"
+                      d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM9.2 16.6l.6.8c2.6 3.467 7.8 3.467 10.4 0l.6-.8 1.6 1.2-.6.8c-3.4 4.533-10.2 4.533-13.6 0l-.6-.8 1.6-1.2Z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="log">
+              <strong>22:21</strong>
+              <p>Image ID: <span>BbMFS3bU-</span> was added to Dislikes</p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none"
+                  viewBox="0 0 30 30"
+                  style="--background: #FFD280;">
+                <path fill="#FF868E" fill-rule="evenodd"
+                      d="M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM7.6 20.2l.6-.8c3.4-4.533 10.2-4.533 13.6 0l.6.8-1.6 1.2-.6-.8c-2.6-3.467-7.8-3.467-10.4 0l-.6.8-1.6-1.2Z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="grid breeds-selector gallery-selector">
+          <section>
+            <div class="item">
+              <div class="label"></div><!--Hello-->
+            </div>
+            <div class="item">
+              <div class="label"></div>
+            </div>
+            <div class="item">
+              <div class="label"></div>
+            </div>
+            <div class="item">
+              <div class="label"></div>
+            </div>
+            <div class="item">
+              <div class="label"></div>
+            </div>
+          </section>
+        </div>
+        <div class="footer breeds-selector gallery-selector">
+          <button disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+              <path fill="#FF868E"
+                    d="M10 14a.996.996 0 0 1-.707-.293l-5-5a1 1 0 0 1 0-1.414l5-5a1 1 0 1 1 1.414 1.414L6.414 8l4.294 4.294A1 1 0 0 1 10 14Z"/>
+            </svg>
+            <span>PREV</span>
+          </button>
+          <button>
+            <span>NEXT</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+              <path fill="#FF868E"
+                    d="M6 2c.256 0 .512.098.707.293l5 5a1 1 0 0 1 0 1.414l-5 5a1 1 0 1 1-1.414-1.414L9.586 8 5.292 3.706A1 1 0 0 1 6 2Z"/>
+            </svg>
+          </button>
+        </div>
+        <!--          <div class="footer"></div>-->
       </div>
     </div>
-  </main>
-  <script src="js/script.js"></script>
+  </div>
+</main>
+<script src="js/script.js"></script>
 </body>
 </html>
