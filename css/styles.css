@@ -652,7 +652,7 @@ main .right .content .main .grid > section .item {
   height: 100%;
   width: 100%;
   min-width: fit-content;
-  background: #C4C4C4;
+  background: rgba(255, 134, 142, 0) var(--background) center center / cover;
   padding: 0 10px 10px 10px;
   display: flex;
   align-items: end;

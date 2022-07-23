@@ -113,11 +113,11 @@
             <option value="American Bobtail">American Shorthair</option>
             <option value="American Bobtail">American Wirehair</option>
           </select>
-          <select class="breeds-selector" onchange="limitSelect(this)"> <!--id="limit" -->
-            <option value="1">Limit: 5</option>
-            <option value="2">Limit: 10</option>
-            <option value="3">Limit: 15</option>
-            <option value="4">Limit: 20</option>
+          <select class="breeds-selector" id="breedsLimit" onchange="breedsLimitListener(this)"> <!--id="limit" onchange="limitSelect(this)"-->
+            <option value="5">Limit: 5</option>
+            <option value="10">Limit: 10</option>
+            <option value="15">Limit: 15</option>
+            <option value="20">Limit: 20</option>
           </select>
           <!--<div class="button">
           </div>
@@ -183,11 +183,11 @@
           </div>
           <div class="grid-item">
             <span>LIMIT</span>
-            <select onchange="limitSelect(this)">
-              <option value="1">5 items per page</option>
-              <option value="2">10 items per page</option>
-              <option value="3">15 items per page</option>
-              <option value="4">20 items per page</option>
+            <select id="galleryLimit" onchange="galleryLimitListener(this)"> <!--onchange="limitSelect(this)"-->
+              <option value="5">5 items per page</option>
+              <option value="10">10 items per page</option>
+              <option value="15">15 items per page</option>
+              <option value="20">20 items per page</option>
             </select>
           </div>
         </div>
@@ -252,12 +252,12 @@
             </div>
           </div>
         </div>
-        <div class="grid breeds-selector gallery-selector">
-          <section>
-            <div class="item">
-              <div class="label"></div><!--Hello-->
-            </div>
-            <div class="item">
+        <div class="grid breeds-selector gallery-selector" id="main-content">
+<!--          <section>-->
+<!--            <div class="item" style="&#45;&#45;background: ;">-->
+<!--              <div class="label"></div>&lt;!&ndash;Hello&ndash;&gt;-->
+<!--            </div>-->
+            <!--<div class="item">
               <div class="label"></div>
             </div>
             <div class="item">
@@ -268,18 +268,18 @@
             </div>
             <div class="item">
               <div class="label"></div>
-            </div>
-          </section>
+            </div>-->
+<!--          </section>-->
         </div>
-        <div class="footer breeds-selector gallery-selector">
-          <button disabled>
+        <div class="footer breeds-selector gallery-selector" >
+          <button disabled id="prev">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path fill="#FF868E"
                     d="M10 14a.996.996 0 0 1-.707-.293l-5-5a1 1 0 0 1 0-1.414l5-5a1 1 0 1 1 1.414 1.414L6.414 8l4.294 4.294A1 1 0 0 1 10 14Z"/>
             </svg>
             <span>PREV</span>
           </button>
-          <button>
+          <button id="next">
             <span>NEXT</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path fill="#FF868E"
