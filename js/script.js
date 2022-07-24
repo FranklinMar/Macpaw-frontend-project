@@ -7,7 +7,7 @@ var likeSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" fi
     '11.059 0 9.208 0 7.278Z" clip-rule="evenodd"/>\n' +
     '</svg>\n';
 
-String.prototype.format = function () {
+/*String.prototype.format = function () {
     // store arguments in an array
     var args = arguments;
     // use replace to iterate over the string
@@ -17,7 +17,7 @@ String.prototype.format = function () {
         // check if the argument is present
         return typeof args[index] == 'undefined' ? match : args[index];
     });
-};
+};*/
 
 
 let buttons = document.getElementById("menu").getElementsByTagName("input");
@@ -26,10 +26,11 @@ let home = document.getElementById("home");
 
 let key = "af5697f4-7d20-4967-9fad-94df7846fcd3";
 let breedsListUrl = "https://api.thecatapi.com/v1/breeds?attach_breed=0";
-let gallerySearchUrl = "https://api.thecatapi.com/v1/images/search?size=full&limit={0}&page=0&order=ASC&size=full";
+// let gallerySearchUrl = "https://api.thecatapi.com/v1/images/search?size=full&limit={0}&page={1}&order=ASC";
+let gallerySearchUrl = "https://api.thecatapi.com/v1/images/search?size=thumb";
 
-let galleryPage = 0, breedsPage = 0;
-let listGallery = null, listBreeds = null, list = null;
+let page = 0, listLength = 0, limit = 0;
+let list = null, order = "RANDOM";
 
 
 // Buttons check listener
@@ -47,11 +48,11 @@ function buttonsListener() {
         let title = null;
         home.style.display = "none";
         document.getElementById('content').style.display = "flex";
-        for (let i of document.getElementsByClassName(this.id.toString().replace("check", "selector"))) {
+        for (let i of document.getElementsByClassName(this.id.toString() + "-selector")) {
             i.style.removeProperty("display");
         }
         // if (document.getElementById('breeds-check').checked) {
-        if (this.id === 'breeds-check') {
+        if (this.id === 'breeds') {
             // resetGrid();
             // let content = document.getElementById("main-content");
             // content.innerHTML = "";
@@ -63,17 +64,25 @@ function buttonsListener() {
                 i.firstElementChild.style.width = "100%";
                 i.firstElementChild.innerHTML = "Breed";
             }
-        } else if (this.id === 'gallery-check') {
+        } else if (this.id === 'gallery') {
+            if (order === "RANDOM") {
+                document.getElementById("next").setAttribute("disabled", "");
+            } else {
+                document.getElementById("next").removeAttribute("disabled");
+            }
 
             // resetGrid();
             title = "GALLERY";
+            // galleryLimit(document.getElementById("galleryLimit"));
+
+            limitListener(limit < 5 ? 5 : limit, page);
             let items = document.getElementsByClassName("item");
             for (let i of items) {
                 i.style.alignItems = "center";
                 i.firstElementChild.style.width = "fit-content";
                 i.firstElementChild.innerHTML = likeSvg;
             }
-        } else if (this.id === 'voting-check') {
+        } else if (this.id === 'voting') {
             title = "VOTING";
         }
         document.getElementById("title").innerText = title;
@@ -89,120 +98,13 @@ function buttonsListener() {
         home.style.display = "initial";
     }
 }
-/*
-// Limit listener
-function limitListener() {
 
-}
-
-// Limit Select tags
-function limitSelect(element) {
-    // let select = document.getElementById(id);
-    let value = element.options[element.selectedIndex].value;
-    // value = value.toString().replace("Limit: ", "");
-    let grid = document.getElementsByClassName("grid")[0];
-    grid.innerHTML = "";
-    // grid.innerHTML = sectionContent.repeat(value/5);
-    console.log(value);
-    for (let i = 0; i < value ; i++) {
-        let section = document.createElement('section');
-        if (i%2) {
-            section.setAttribute("reverse", "");
-            // section.innerHTML += sectionColumn2 + sectionColumn1;
-            // } else {
-            // section.innerHTML += sectionColumn1 + sectionColumn2;
-        }
-        for (let j = 0; j < 5; j++) {
-            section.innerHTML += '<div class="item">\n' +
-                '<div class="label">Hello</div>\n' +
-                '</div>\n';
-            // let item = document.createElement('div');
-        }
-        grid.append(section);
-    }
-}*/
-
-/*function resetGrid(list=null){
-    let content = document.getElementById("main-content");
-    content.innerHTML = "";
-
-    if (list == null) {
-        content.append(document.createElement("section"));
-        content = content.firstChild;
-        // skip TextNodes and Comments
-        while (content != null && content.nodeType !== 1){
-            content = content.nextSibling;
-        }
-
-        let item, label;
-        for (let i = 0; i < 5; i++) {
-            item = document.createElement("div");
-            item.setAttribute("class", "item");
-            label = document.createElement("div");
-            item.append(label);
-            label.setAttribute("class", "label");
-            // label.textContent = "Breed";
-            content.appendChild(item);
-        }
-    }
-}*/
-
-function ajax_get(url/*, callback*/) {
-    var xmlhttp = new XMLHttpRequest();
-    /*xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState === 4 /!*this.DONE*!/ && xmlhttp.status === 200) {
-            console.log('responseText:' + xmlhttp.responseText);
-            try {
-                var data = JSON.parse(xmlhttp.responseText);
-            } catch (err) {
-                console.log(err.message + " in " + xmlhttp.responseText);
-                return null;
-            }
-            //callback(data);
-            return data;
-        }
-    };*/
-
-    xmlhttp.open("GET", url, false);
-    xmlhttp.setRequestHeader("x-api-key", key);
-    xmlhttp.send();
-    return JSON.parse(xmlhttp.responseText);
-    // return JSON.stringify(xmlhttp.responseText);
-}
-
-function limitQuery(element) {
-    let value = element.options[element.selectedIndex].value;
-    let content = document.getElementById("main-content");
-    content.innerHTML = "";
-    list = ajax_get(gallerySearchUrl.format(value));
-
-    let index = 0;
-    let section, item, label;
-    // let iterator = list.entries();
-    for (let i = 0; i < value; i++, index++) {
-        // console.log(i%5);
-        if (i%5 === 0) {
-            section = document.createElement("section");
-            if (Math.round(index/5) % 2) {
-                section.setAttribute("reverse", "");
-            }
-            content.append(section);
-        }
-
-        item = document.createElement("div");
-        item.setAttribute("class", "item");
-        item.style = `--background: url(${list[index].url});`;
-        // item.style = `--background: ${iterator.next().value.url};`;
-        label = document.createElement("div");
-        item.append(label);
-        label.setAttribute("class", "label");
-        // label.textContent = "Breed";
-        section.appendChild(item);
-    }
-}
-
-function breedsLimitListener(element){
-    limitQuery(element);
+function breedsLimit(element){
+    page = 0;
+    document.getElementById("prev").setAttribute("disabled", "");
+    // limit = element.options[element.selectedIndex].value;
+    // changePage(limit, page);
+    limitListener(element.options[element.selectedIndex].value, page);
     let items = document.getElementsByClassName("item");
     for (let i of items) {
         i.style.alignItems = "end";
@@ -211,8 +113,12 @@ function breedsLimitListener(element){
     }
 }
 
-function galleryLimitListener(element){
-    limitQuery(element);
+function galleryLimit(element){
+    page = 0;
+    document.getElementById("prev").setAttribute("disabled", "");
+    // limit = element.options[element.selectedIndex].value;
+    // changePage(limit, page);
+    limitListener(element.options[element.selectedIndex].value, page);
     let items = document.getElementsByClassName("item");
     for (let i of items) {
         i.style.alignItems = "center";
@@ -221,12 +127,138 @@ function galleryLimitListener(element){
     }
 }
 
+function limitListener(curLimit, curPage) {
+    if (curLimit !== limit) {
+        let content = document.getElementById("main-content");
+        // content.innerHTML = "";
+        let section, item, label;
+        // let iterator = list.entries();
+        if (Number(curLimit) > Number(limit)) {
+            for (let i = 0; i < curLimit - limit; i++) {
+                if (i%5 === 0) {
+                    section = document.createElement("section");
+                    // if (Math.round(i/5) % 2) {
+                    //     section.setAttribute("reverse", "");
+                    // }
+                    content.append(section);
+                }
+
+                item = document.createElement("div");
+                item.setAttribute("class", "item");
+                // item.setAttribute("style", "--background: url( );")
+                // item.style = `--background: url(${list[i].url});`;
+                // item.style = `--background: ${iterator.next().value.url};`;
+                label = document.createElement("div");
+                item.append(label);
+                label.setAttribute("class", "label");
+                section.appendChild(item);
+            }
+        } else {
+            let section = content.getElementsByTagName("section");
+            //console.log((limit - curLimit)/5);
+            for (let i = (limit - curLimit)/5; i >= curLimit/5; i--) {
+                content.removeChild(section[i]);
+            }
+        }
+        limit = curLimit;
+    }
+    changePage(curLimit, curPage, order);
+}
+
+function prevPage(element) {
+    //console.log(page);
+    if (page > 0) {
+        page--;
+        changePage(limit, page, order);
+
+        document.getElementById("next").removeAttribute("disabled");
+    }
+    if (page === 0) {
+        element.setAttribute("disabled", "");
+    } else if(element.hasAttribute("disabled")) {
+        element.removeAttribute("disabled");
+    }
+}
+
+function nextPage(element) {
+    //console.log(page);
+    if (page < listLength/limit) {
+        page++;
+
+        document.getElementById("prev").removeAttribute("disabled");
+        changePage(limit, page, order);
+    }
+
+    if (page === listLength/limit) {
+        element.setAttribute("disabled", "");
+    } else if(element.hasAttribute("disabled")) {
+        element.removeAttribute("disabled");
+    }
+}
+
+function orderListener(element) {
+    page = 0;
+    document.getElementById("prev").setAttribute("disabled", "");
+    order = element.options[element.selectedIndex].value;
+    if (order === "RANDOM") {
+        document.getElementById("next").setAttribute("disabled", "");
+        //console.log(true);
+    } else {
+        document.getElementById("next").removeAttribute("disabled");
+        //console.log(false);
+    }
+    changePage(limit, page, order);
+}
+
+function changePage(curLimit, curPage, curOrder) {
+    let query = gallerySearchUrl;
+    if (curLimit != null) {
+        query += `&limit=${curLimit}`;
+    } else {
+        return;
+    }
+    if (curPage != null) {
+        query += `&page=${curPage}`;
+    }
+    if (curOrder != null) {
+        query += `&order=${curOrder}`;
+    }
+    let obj = ajax_get(query);
+    list = obj.data;
+    listLength = obj.length;
+
+    let content = document.getElementById("main-content");
+    let items = content.getElementsByClassName("item");
+    let i = 0;
+    for (let item of items) {
+        // item.style.toString().replace("/\\--background: url(.*?\\);/g", `--background: url(${list[i].url});`);
+        // item.style.backgroundImage = `url(${list[i].url})`;
+        item.style.setProperty('--background', `url(${list[i].url}`);
+        i++;
+    }
+}
+
+function ajax_get(url) {
+    console.log(url);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            console.log(this.responseText);
+        }
+    });
+    xmlhttp.open("GET", url, false);
+    xmlhttp.setRequestHeader("x-api-key", key);
+    // xmlhttp.setRequestHeader("Access-Control-Expose-Headers", "Pagination-Count");
+    xmlhttp.send();
+    console.log(xmlhttp.getAllResponseHeaders());//getResponseHeader("Pagination-Count"));
+    return {"data": JSON.parse(xmlhttp.responseText), "length": order !== "RANDOM" ?
+            xmlhttp.getResponseHeader("Pagination-Count") : 0};
+}
+
 // Adding buttons listeners
 for (let button of buttons) {
     button.addEventListener('click', buttonsListener);
 }
-
-breedsLimitListener(document.getElementById("breedsLimit"));
 
 // Initializing Grid page block
 //resetGrid();

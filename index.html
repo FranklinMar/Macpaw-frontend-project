@@ -21,8 +21,8 @@
       <p class="header">Lets start using The Cat API</p>
       <div class="menu" id="menu">
         <div>
-          <input id="voting-check" type="checkbox" name="group"/>
-          <label for="voting-check" class="button">
+          <input id="voting" type="checkbox" name="group"/>
+          <label for="voting" class="button">
             VOTING
           </label>
           <div class="icon blue-back">
@@ -30,8 +30,8 @@
           </div>
         </div>
         <div>
-          <input id="breeds-check" type="checkbox" name="group"/>
-          <label for="breeds-check" class="button">
+          <input id="breeds" type="checkbox" name="group"/>
+          <label for="breeds" class="button">
             BREEDS
           </label>
           <div class="icon green-back">
@@ -39,8 +39,8 @@
           </div>
         </div>
         <div>
-          <input id="gallery-check" type="checkbox" name="group"/>
-          <label for="gallery-check" class="button">
+          <input id="gallery" type="checkbox" name="group"/>
+          <label for="gallery" class="button">
             GALLERY
           </label>
           <div class="icon yellow-back">
@@ -113,7 +113,7 @@
             <option value="American Bobtail">American Shorthair</option>
             <option value="American Bobtail">American Wirehair</option>
           </select>
-          <select class="breeds-selector" id="breedsLimit" onchange="breedsLimitListener(this)"> <!--id="limit" onchange="limitSelect(this)"-->
+          <select class="breeds-selector" id="breedsLimit" onchange="breedsLimit(this)"> <!--id="limit" onchange="limitSelect(this)"-->
             <option value="5">Limit: 5</option>
             <option value="10">Limit: 10</option>
             <option value="15">Limit: 15</option>
@@ -153,17 +153,17 @@
         <div class="gallery-grid gallery-selector">
           <div class="grid-item">
             <span>ORDER</span>
-            <select>
-              <option value="Random">Random</option>
-              <option value="Desc">Desc</option>
-              <option value="Asc">Asc</option>
+            <select id="order" onchange="orderListener(this);">
+              <option value="RANDOM">Random</option>
+              <option value="DESC">Desc</option>
+              <option value="ASC">Asc</option>
               <!--                <option value="Descending">Descending</option>-->
               <!--                <option value="Ascending">Ascending</option>-->
             </select>
           </div>
           <div class="grid-item">
             <span>TYPE</span>
-            <select>
+            <select id="type">
               <option value="All">All</option>
               <option value="Static">Random</option>
               <option value="Animated">Animated</option>
@@ -183,7 +183,7 @@
           </div>
           <div class="grid-item">
             <span>LIMIT</span>
-            <select id="galleryLimit" onchange="galleryLimitListener(this)"> <!--onchange="limitSelect(this)"-->
+            <select id="galleryLimit" onchange="galleryLimit(this)"> <!--onchange="limitSelect(this)"-->
               <option value="5">5 items per page</option>
               <option value="10">10 items per page</option>
               <option value="15">15 items per page</option>
@@ -272,14 +272,14 @@
 <!--          </section>-->
         </div>
         <div class="footer breeds-selector gallery-selector" >
-          <button disabled id="prev">
+          <button disabled id="prev" onclick="prevPage(this);">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path fill="#FF868E"
                     d="M10 14a.996.996 0 0 1-.707-.293l-5-5a1 1 0 0 1 0-1.414l5-5a1 1 0 1 1 1.414 1.414L6.414 8l4.294 4.294A1 1 0 0 1 10 14Z"/>
             </svg>
             <span>PREV</span>
           </button>
-          <button id="next">
+          <button id="next" onclick="nextPage(this);">
             <span>NEXT</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path fill="#FF868E"
