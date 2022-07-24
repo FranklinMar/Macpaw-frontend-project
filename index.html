@@ -163,32 +163,39 @@
           </div>
           <div class="grid-item">
             <span>TYPE</span>
-            <select id="type">
-              <option value="All">All</option>
-              <option value="Static">Random</option>
-              <option value="Animated">Animated</option>
+            <select id="type" onchange="typeListener(this);">
+              <option value="none">All</option>
+              <option value="jpg,png">Static</option>
+              <option value="gif">Animated</option>
             </select>
           </div>
           <div class="grid-item">
             <span>BREED</span>
-            <select>
-              <option value="None">None</option>
-              <option value="Abyssinian">Abyssinian</option>
+            <select id="galleryBreeds" onchange="galleryBreedsListener(this);">
+              <option value="none">None</option>
+              <!--<option value="Abyssinian">Abyssinian</option>
               <option value="Bengal">Bengal</option>
               <option value="Agean">Agean</option>
               <option value="American Bobtail">American Bobtail</option>
               <option value="American Shorthair">American Shorthair</option>
-              <option value="American Wirehair">American Wirehair</option>
+              <option value="American Wirehair">American Wirehair</option>-->
             </select>
           </div>
           <div class="grid-item">
             <span>LIMIT</span>
-            <select id="galleryLimit" onchange="galleryLimit(this)"> <!--onchange="limitSelect(this)"-->
-              <option value="5">5 items per page</option>
-              <option value="10">10 items per page</option>
-              <option value="15">15 items per page</option>
-              <option value="20">20 items per page</option>
-            </select>
+            <div>
+              <select id="galleryLimit" onchange="galleryLimit(this)"> <!--onchange="limitSelect(this)"-->
+                <option value="5">5 items per page</option>
+                <option value="10">10 items per page</option>
+                <option value="15">15 items per page</option>
+                <option value="20">20 items per page</option>
+              </select>
+              <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 18 20">
+                  <path fill="#FF868E" fill-rule="evenodd" d="M8.482 2.5 6.934.953 7.886 0l3.172 3.17-3.172 3.169-.952-.953 1.538-1.538a7.409 7.409 0 0 0-7.125 7.4 7.409 7.409 0 0 0 7.41 7.405 7.409 7.409 0 0 0 7.41-7.405v-.674h1.348v.674c0 4.833-3.922 8.752-8.758 8.752C3.922 20 0 16.081 0 11.248 0 6.507 3.774 2.645 8.482 2.5Z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
         <div class="page voting-selector">

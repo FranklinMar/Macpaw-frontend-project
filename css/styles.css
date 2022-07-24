@@ -470,6 +470,36 @@ main .right .content .main .gallery-grid .grid-item span {
   color: #8C8C8C;
   margin-left: 10px;
 }
+main .right .content .main .gallery-grid .grid-item > div {
+  display: flex;
+  border: none;
+  height: 100%;
+  width: 100%;
+  min-width: fit-content;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+main .right .content .main .gallery-grid .grid-item > div > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 11px 10px;
+  width: 40px;
+  height: 40px;
+  background: #FFFFFF;
+  border-radius: 10px;
+}
+main .right .content .main .gallery-grid .grid-item > div > button:hover {
+  transition: 0.2s;
+  background: #FBE0DC;
+}
+main .right .content .main .gallery-grid .grid-item > div > button:active {
+  background: #FF868E;
+}
+main .right .content .main .gallery-grid .grid-item > div > button:active path {
+  fill: var(--white);
+}
 main .right .content .main .gallery-grid .grid-item select {
   display: initial;
   border: none;
@@ -678,7 +708,7 @@ main .right .content .main .grid > section .item:nth-child(3) {
 main .right .content .main .grid > section .item:nth-child(4) {
   grid-area: item-4;
 }
-main .right .content .main .grid > section .item:last-child {
+main .right .content .main .grid > section .item:nth-child(5) {
   grid-area: item-5;
 }
 main .right .content .main .grid > section .item .label {
