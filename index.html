@@ -91,7 +91,7 @@
         </div>
       </nav>
       <div class="main">
-        <div class="options">
+        <div class="options" id="options">
           <div>
             <div class="pink-button" onclick="check = null; buttonsListener();">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
@@ -104,16 +104,16 @@
               <!--              BREEDS-->
             </div>
           </div>
-          <select class="breeds-selector">
-            <option value="All breeds">All breeds</option>
-            <option value="Abyssinian">Abyssinian</option>
+          <select class="breeds-selector" id="breedsBreeds">
+            <option value="0">All breeds</option>
+            <!--<option value="Abyssinian">Abyssinian</option>
             <option value="Aegean">Aegean</option>
             <option value="American Bobtail">American Bobtail</option>
             <option value="American Bobtail">American Curl</option>
             <option value="American Bobtail">American Shorthair</option>
-            <option value="American Bobtail">American Wirehair</option>
+            <option value="American Bobtail">American Wirehair</optio-->n>
           </select>
-          <select class="breeds-selector" id="breedsLimit" onchange="breedsLimit(this)"> <!--id="limit" onchange="limitSelect(this)"-->
+          <select class="breeds-selector" id="breedsLimit" onchange="limitBreeds(this)"> <!--id="limit" onchange="limitSelect(this)"-->
             <option value="5">Limit: 5</option>
             <option value="10">Limit: 10</option>
             <option value="15">Limit: 15</option>
@@ -184,13 +184,14 @@
           <div class="grid-item">
             <span>LIMIT</span>
             <div>
-              <select id="galleryLimit" onchange="galleryLimit(this)"> <!--onchange="limitSelect(this)"-->
+              <select id="galleryLimit" onchange="limitGallery(this)"> <!--onchange="limitSelect(this)"-->
                 <option value="5">5 items per page</option>
                 <option value="10">10 items per page</option>
                 <option value="15">15 items per page</option>
                 <option value="20">20 items per page</option>
               </select>
-              <button>
+              <button onclick="/*changePage(galleryLimit, galleryPage, galleryOrder, galleryBreed, type);*/
+              changePage(gallery);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 18 20">
                   <path fill="#FF868E" fill-rule="evenodd" d="M8.482 2.5 6.934.953 7.886 0l3.172 3.17-3.172 3.169-.952-.953 1.538-1.538a7.409 7.409 0 0 0-7.125 7.4 7.409 7.409 0 0 0 7.41 7.405 7.409 7.409 0 0 0 7.41-7.405v-.674h1.348v.674c0 4.833-3.922 8.752-8.758 8.752C3.922 20 0 16.081 0 11.248 0 6.507 3.774 2.645 8.482 2.5Z" clip-rule="evenodd"/>
                 </svg>
@@ -279,14 +280,14 @@
 <!--          </section>-->
         </div>
         <div class="footer breeds-selector gallery-selector" >
-          <button disabled id="prev" onclick="prevPage(this);">
+          <button disabled id="prev" onclick="prevPage(this, currentParam);">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path fill="#FF868E"
                     d="M10 14a.996.996 0 0 1-.707-.293l-5-5a1 1 0 0 1 0-1.414l5-5a1 1 0 1 1 1.414 1.414L6.414 8l4.294 4.294A1 1 0 0 1 10 14Z"/>
             </svg>
             <span>PREV</span>
           </button>
-          <button id="next" onclick="nextPage(this);">
+          <button id="next" onclick="nextPage(this, currentParam);">
             <span>NEXT</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path fill="#FF868E"

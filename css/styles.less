@@ -528,10 +528,8 @@ main {
                 color: var(--white);
               }
 
-              svg {
-                path {
-                  fill: var(--white);
-                }
+              path {
+                fill: var(--white);
               }
             }
           }
@@ -615,10 +613,11 @@ main {
               gap: 10px;
 
               >button {
+                cursor: pointer;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: 11px 10px;
+                padding: 10px;
 
                 width: 40px;
                 height: 40px;
@@ -626,16 +625,57 @@ main {
                 background: #FFFFFF;
                 border-radius: 10px;
 
+                @-webkit-keyframes rotating /* Safari and Chrome */ {
+                  from {
+                    -webkit-transform: rotate(90deg);
+                    -o-transform: rotate(90deg);
+                    transform: rotate(90deg);
+                  }
+                  to {
+                    -webkit-transform: rotate(450deg);
+                    -o-transform: rotate(450deg);
+                    transform: rotate(450deg);
+                  }
+                }
+                @keyframes rotating {
+                  from {
+                    -ms-transform: rotate(90deg);
+                    -moz-transform: rotate(90deg);
+                    -webkit-transform: rotate(90deg);
+                    -o-transform: rotate(90deg);
+                    transform: rotate(90deg);
+                  }
+                  to {
+                    -ms-transform: rotate(450deg);
+                    -moz-transform: rotate(450deg);
+                    -webkit-transform: rotate(450deg);
+                    -o-transform: rotate(450deg);
+                    transform: rotate(450deg);
+                  }
+                }
+
                 &:hover {
                   transition: 0.2s;
                   background: #FBE0DC;
+
+                  svg {
+                    transition: 0.2s;
+                    transform: rotate(90deg);
+                  }
                 }
 
                 &:active {
                   background: #FF868E;
 
-                  path {
-                    fill: var(--white);
+                  svg {
+                    webkit-animation: rotating 1s linear infinite;
+                    -moz-animation: rotating 1s linear infinite;
+                    -ms-animation: rotating 1s linear infinite;
+                    -o-animation: rotating 1s linear infinite;
+                    animation: rotating 1s linear infinite;
+                    path {
+                      fill: var(--white);
+                    }
                   }
                 }
               }
@@ -723,21 +763,17 @@ main {
 
               background: rgba(var(--buttonSrc), 1);//var(--buttonSrc);//#97EAB9;
 
-              >svg {
-                >path {
-                  fill: var(--white);
-                  d: var(--d);
-                }
+              path {
+                fill: var(--white);
+                d: var(--d);
               }
 
               &:hover {
                 transition: 0.2s;
                 background: rgba(var(--buttonSrc), 0.3);
 
-                >svg {
-                  >path {
-                    fill: rgb(var(--buttonSrc));
-                  }
+                path {
+                  fill: rgb(var(--buttonSrc));
                 }
               }
 
@@ -745,11 +781,9 @@ main {
                 transition: 0s;
                 background: rgb(var(--buttonSrc));
 
-                >svg {
-                  >path {
-                    fill: var(--white);
-                    d: var(--dActive, var(--d));
-                  }
+                path {
+                  fill: var(--white);
+                  d: var(--dActive, var(--d));
                 }
               }
 
@@ -990,10 +1024,8 @@ main {
                 color: #8C8C8C;
               }
 
-              svg {
-                path {
-                  fill: #8C8C8C;
-                }
+              path {
+                fill: #8C8C8C;
               }
             }
 
@@ -1004,10 +1036,8 @@ main {
                 color: var(--white);
               }
 
-              svg {
-                path {
-                  fill: var(--white);
-                }
+              path {
+                fill: var(--white);
               }
             }
           }

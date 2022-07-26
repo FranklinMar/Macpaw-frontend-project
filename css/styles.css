@@ -432,7 +432,7 @@ main .right .content .main .options .button:hover {
 main .right .content .main .options .button:hover span {
   color: var(--white);
 }
-main .right .content .main .options .button:hover svg path {
+main .right .content .main .options .button:hover path {
   fill: var(--white);
 }
 main .right .content .main .gallery-grid {
@@ -481,23 +481,64 @@ main .right .content .main .gallery-grid .grid-item > div {
   gap: 10px;
 }
 main .right .content .main .gallery-grid .grid-item > div > button {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 11px 10px;
+  padding: 10px;
   width: 40px;
   height: 40px;
   background: #FFFFFF;
   border-radius: 10px;
 }
+@-webkit-keyframes rotating {
+  /* Safari and Chrome */
+  from {
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+  to {
+    -webkit-transform: rotate(450deg);
+    -o-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+  to {
+    -ms-transform: rotate(450deg);
+    -moz-transform: rotate(450deg);
+    -webkit-transform: rotate(450deg);
+    -o-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
+}
 main .right .content .main .gallery-grid .grid-item > div > button:hover {
   transition: 0.2s;
   background: #FBE0DC;
 }
+main .right .content .main .gallery-grid .grid-item > div > button:hover svg {
+  transition: 0.2s;
+  transform: rotate(90deg);
+}
 main .right .content .main .gallery-grid .grid-item > div > button:active {
   background: #FF868E;
 }
-main .right .content .main .gallery-grid .grid-item > div > button:active path {
+main .right .content .main .gallery-grid .grid-item > div > button:active svg {
+  webkit-animation: rotating 1s linear infinite;
+  -moz-animation: rotating 1s linear infinite;
+  -ms-animation: rotating 1s linear infinite;
+  -o-animation: rotating 1s linear infinite;
+  animation: rotating 1s linear infinite;
+}
+main .right .content .main .gallery-grid .grid-item > div > button:active svg path {
   fill: var(--white);
 }
 main .right .content .main .gallery-grid .grid-item select {
@@ -566,7 +607,7 @@ main .right .content .main .page .buttons .button {
   height: 80px;
   background: rgba(var(--buttonSrc), 1);
 }
-main .right .content .main .page .buttons .button > svg > path {
+main .right .content .main .page .buttons .button path {
   fill: var(--white);
   d: var(--d);
 }
@@ -574,14 +615,14 @@ main .right .content .main .page .buttons .button:hover {
   transition: 0.2s;
   background: rgba(var(--buttonSrc), 0.3);
 }
-main .right .content .main .page .buttons .button:hover > svg > path {
+main .right .content .main .page .buttons .button:hover path {
   fill: rgb(var(--buttonSrc));
 }
 main .right .content .main .page .buttons .button:active {
   transition: 0s;
   background: rgb(var(--buttonSrc));
 }
-main .right .content .main .page .buttons .button:active > svg > path {
+main .right .content .main .page .buttons .button:active path {
   fill: var(--white);
   d: var(--dActive, var(--d));
 }
@@ -773,7 +814,7 @@ main .right .content .main .footer button:disabled {
 main .right .content .main .footer button:disabled span {
   color: #8C8C8C;
 }
-main .right .content .main .footer button:disabled svg path {
+main .right .content .main .footer button:disabled path {
   fill: #8C8C8C;
 }
 main .right .content .main .footer button:hover:enabled {
@@ -783,7 +824,7 @@ main .right .content .main .footer button:hover:enabled {
 main .right .content .main .footer button:hover:enabled span {
   color: var(--white);
 }
-main .right .content .main .footer button:hover:enabled svg path {
+main .right .content .main .footer button:hover:enabled path {
   fill: var(--white);
 }
 main .right #content {
