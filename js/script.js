@@ -16,15 +16,16 @@ let options = document.getElementById("options");
 let mainContent = document.getElementById("main-content");
 
 const key = "af5697f4-7d20-4967-9fad-94df7846fcd3";
-const breedsListUrl = "https://api.thecatapi.com/v1/breeds?attach_breed=0";
+// const breedsListUrl = "https://api.thecatapi.com/v1/breeds?attach_breed=0";
+const breedsListUrl = "https://api.thecatapi.com/v1/breeds?";
 // let gallerySearchUrl = "https://api.thecatapi.com/v1/images/search?size=full&limit={0}&page={1}&order=ASC";
 let gallerySearchUrl = "https://api.thecatapi.com/v1/images/search?size=thumb";
 
 class QueryParams {
-    constructor(dictionary, query, queryEnable=true, list=[], listLength) {
+    constructor(dictionary, query, /*queryEnable=true, */list=[], listLength) {
         this.dict = dictionary;
         this.query = query;
-        this.queryBool = queryEnable;
+        // this.queryBool = queryEnable;
         this.list = list;
         this.listLength = listLength == null ? list.length : listLength;
     }
@@ -39,21 +40,38 @@ let gallery = new QueryParams({"limit": 5, "page": 0, "order": null, "breed_id":
     gallerySearchUrl);
 gallery.change = function () {
     let items = document.getElementsByClassName("item");
+
+    let index = 0;
     for (let i of items) {
         i.style.alignItems = "center";
         i.firstElementChild.style.width = "fit-content";
         i.firstElementChild.innerHTML = likeSvg;
+        i.style.setProperty('--background', `url(${this.list[index].url})`);
+        index++;
     }
 }
 /*let breedsPage = 0, breedsList = [], breedsLimit,
     breedsListLength = breedsList.length, breedsBreed = 0;*/
-let breeds = new QueryParams({});
-breeds.change = function () {
+let breeds = new QueryParams({"limit": 5, "page": 0}, breedsListUrl);
+breeds.check = document.querySelector('input[name="sort"]:checked');//null; CHECKBOX
+    breeds.change = function () {
     let items = document.getElementsByClassName("item");
+    let index = 0;
     for (let i of items) {
         i.style.alignItems = "end";
         i.firstElementChild.style.width = "100%";
-        i.firstElementChild.innerHTML = "Breed";
+        // i.firstElementChild.innerHTML = this.list[index].name;
+        // // i.firstElementChild.innerHTML = "Breed";
+        // i.style.setProperty('--background', `url(${this.list[index].image.url})`);
+        i.firstElementChild.innerHTML = this.list[index].name;
+        if (this.list[index].image) {
+            i.style.setProperty('--background', `url(${this.list[index].image.url})`);
+        } else {
+            i.style.setProperty('--background', "url(" +
+                ajax_get(`https://api.thecatapi.com/v1/images/search?size=thumb&order=ASC&breed_id=${
+                    this.list[index].id}`).data[0].url + ")");
+        }
+        index++;
     }
 }
 let currentParam;
@@ -101,9 +119,11 @@ function buttonsListener() {
                 i.firstElementChild.style.width = "100%";
                 i.firstElementChild.innerHTML = "Breed";
             }*/
-            for (let i of options.getElementsByTagName("input")) {
+            /*for (let i of options.getElementsByTagName("input")) {
                 i.checked = false;
-            }
+            }*/
+
+            changePage(breeds, breeds.list.length === 0);
         } else if (this.id === 'gallery') {
             title = "GALLERY";
             currentParam = gallery;
@@ -125,7 +145,7 @@ function buttonsListener() {
             // changePage(galleryLimit, galleryPage, galleryOrder, galleryBreed, type);
 
 
-            changePage(gallery);
+            changePage(gallery, gallery.list.length === 0);
             /*if (Number(gallery.listLength/gallery.list.length) >= Number(gallery.dict.page + 1)
                 && (gallery.dict.order === "RANDOM" || gallery.dict.order == null)) {
                 next.setAttribute("disabled", "");
@@ -166,12 +186,58 @@ function limitBreeds(element){
 
     breeds.dict.limit = element.options[element.selectedIndex].value;
     changePage(breeds);
+
+
     /*let items = document.getElementsByClassName("item");
     for (let i of items) {
         i.style.alignItems = "end";
         i.firstElementChild.style.width = "100%";
         i.firstElementChild.innerHTML = "Breed";
     }*/
+}
+
+function sortListener(element) {
+    check = document.querySelector('input[name="sort"]:checked');
+
+
+    /* CHECKBOX
+    breeds.dict.page = 0;
+    let checkBoxes = document.querySelectorAll('input[name="sort"]:checked');
+
+    for (let box of checkBoxes) {
+        if (box !== element) {
+            box.checked = false;
+        }
+    }
+    breeds.check = element.checked ? element : null;
+    // console.log(breeds.check ? breeds.check.id : breeds.check);
+    // let value = document.querySelector('input[name="sort"]:checked');
+    let value = breeds.check;*/
+
+    // breeds.dict.page = 0;
+    //
+    // // console.log("sort");
+    // // console.log(element.checked);
+    // if (breeds.dict.check && breeds.dict.check !== element) {//element.checked) {
+    //     // console.log("unchecking");
+    //     // element.checked = false;
+    //     breeds.dict.check.checked = false;
+    //     // console.log(breeds.dict);
+    //     // console.log(breeds.dict.check);
+    //     // breeds.dict.check = null;
+    // } /*else {
+    //     if (breeds.dict.check) {
+    //         breeds.dict.check.checked = false;
+    //     }
+    //     element.checked = true;
+    //     breeds.dict.check = element;
+    //     console.log("checking");*/
+    // breeds.dict.check = element;
+    // console.log(breeds.dict.check ? breeds.dict.check.id : breeds.dict.check);
+    //     // let value = document.querySelector('input[name="sort"]:checked');
+    //     // console.log(value ? value.id : null);
+    // /*}*/
+
 }
 
 function limitGallery(element){
@@ -299,7 +365,7 @@ function typeListener(element) {
 }
 
 // function changePage(curLimit, curPage, curOrder, curBreed, curType) {
-function changePage(params) {
+function changePage(params, queryBool=true) {
     if (!(params instanceof QueryParams)) {
         throw new Error("Invalid type param");
     }
@@ -328,7 +394,10 @@ function changePage(params) {
     // } else {
     //     galleryList = curLimit;
     // }
-    if (params.queryBool) {
+
+
+    // if (params.queryBool) {
+    if (queryBool) {
         let query = params.query;
         for (let i in params.dict) {
             if (params.dict[i] != null) {
@@ -361,33 +430,38 @@ function changePage(params) {
 
     let items = mainContent.getElementsByClassName("item");
 
-    if (params.list.length !== items.length) {
-        itemGenerator(params.list.length);
+    // if (params.list.length !== items.length) {
+    //     itemGenerator(params.list.length);
+    // }
+    if (Math.min(params.list.length, params.dict.limit) !== items.length) {
+        itemGenerator(Math.min(params.list.length, params.dict.limit));
     }
     /*if (galleryList.length !== items.length) {
         itemGenerator(galleryList.length);
     }*/
-    let i = 0;
 
 
-    // console.log(`ITEMS: ${items.length} ; LENGTH: ${list.length}`);
-    // console.log("WORKED!");
-    for (let item of items) {
-        // item.style.toString().replace("/\\--background: url(.*?\\);/g", `--background: url(${list[i].url});`);
-        // item.style.backgroundImage = `url(${list[i].url})`;
-        /*if (list[i]) {
-            console.log(list[i]);
-            item.style.setProperty('--background', `url(${list[i].url})`);
-        } else {
-            item.remove();
-        }*/
-        // if (i > list.length - 1) {
-        //     item.remove();
-        // } else {
-            item.style.setProperty('--background', `url(${params.list[i].url})`);
-        // }
-        i++;
-    }
+    // let i = 0;
+    //
+    //
+    // // console.log(`ITEMS: ${items.length} ; LENGTH: ${list.length}`);
+    // // console.log("WORKED!");
+    // for (let item of items) {
+    //     // item.style.toString().replace("/\\--background: url(.*?\\);/g", `--background: url(${list[i].url});`);
+    //     // item.style.backgroundImage = `url(${list[i].url})`;
+    //     /*if (list[i]) {
+    //         console.log(list[i]);
+    //         item.style.setProperty('--background', `url(${list[i].url})`);
+    //     } else {
+    //         item.remove();
+    //     }*/
+    //     // if (i > list.length - 1) {
+    //     //     item.remove();
+    //     // } else {
+    //         item.style.setProperty('--background', `url(${params.list[i].url})`);
+    //     // }
+    //     i++;
+    // }
 
     if (params.dict.page === 0) {
         prev.setAttribute("disabled", "");
@@ -396,7 +470,7 @@ function changePage(params) {
     }
 
     // console.log(`CONDITION: (${params.listLength}/${params.dict.limit} = ${Math.round(Number(params.listLength/params.list.length))}) > ${params.dict.page + 1}`);
-    if (Math.round(Number(params.listLength/params.dict.limit)) <= Number(params.dict.page + 1) ||
+    if (Math.round(Number(params.listLength/params.dict.limit)) < /*breeds - <; gallery - <=*/ Number(params.dict.page + 1) ||
         (params.dict.hasOwnProperty("order") && (params.dict.order === "RANDOM" || params.dict.order == null))) {
         next.setAttribute("disabled", "");
         // console.log("disable");
@@ -491,7 +565,8 @@ function ajax_get(url) {
     xmlHttp.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
             console.log(this.responseText);
-            console.log(this.getResponseHeader("Pagination-Count"));
+            console.log(this.getAllResponseHeaders());
+            // console.log(this.getResponseHeader("Pagination-Count"));
         }
     });
     xmlHttp.open("GET", url, false);
@@ -538,9 +613,12 @@ for (let button of buttons) {
 // Initializing breeds list
 let galleryBreeds = document.getElementById("galleryBreeds");
 let breedsBreeds = document.getElementById("breedsBreeds");
-let breedsArray = ajax_get(breedsListUrl).data;
+// let breedsArray = ajax_get(breedsListUrl).data;
+let breedsObj = ajax_get(breedsListUrl);
+// breeds.list = breedsObj.data;
+// breeds.listLength = breedsObj.length;
 let option;
-for (let item of breedsArray) {
+for (let item of breedsObj.data/*breeds.list*/) {
     option = document.createElement("option");
     option.value = item.id;
     option.innerText = item.name;

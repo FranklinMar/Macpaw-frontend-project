@@ -123,7 +123,7 @@
           </div>
           <div class="button">
           </div>-->
-          <input id="sort-ascend" type="radio" name="sort"/>
+          <input id="sort-ascend" type="radio" name="sort" onclick="sortListener(this);" value="DESC"/>
           <label for="sort-ascend" class="sort-button breeds-selector">
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="22" fill="none" viewBox="0 0 19 22">
               <path fill="#8C8C8C" fill-rule="evenodd"
@@ -131,7 +131,7 @@
                     clip-rule="evenodd"/>
             </svg>
           </label>
-          <input id="sort-descend" type="radio" name="sort"/>
+          <input id="sort-descend" type="radio" name="sort" onclick="sortListener(this);" checked="checked" value="ASC"/>
           <label for="sort-descend" class="sort-button breeds-selector">
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="22" fill="none" viewBox="0 0 19 22">
               <path fill="#8C8C8C" fill-rule="evenodd"
@@ -190,8 +190,7 @@
                 <option value="15">15 items per page</option>
                 <option value="20">20 items per page</option>
               </select>
-              <button onclick="/*changePage(galleryLimit, galleryPage, galleryOrder, galleryBreed, type);*/
-              changePage(gallery);">
+              <button onclick="changePage(gallery);/*changePage(galleryLimit, galleryPage, galleryOrder, galleryBreed, type);*/">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 18 20">
                   <path fill="#FF868E" fill-rule="evenodd" d="M8.482 2.5 6.934.953 7.886 0l3.172 3.17-3.172 3.169-.952-.953 1.538-1.538a7.409 7.409 0 0 0-7.125 7.4 7.409 7.409 0 0 0 7.41 7.405 7.409 7.409 0 0 0 7.41-7.405v-.674h1.348v.674c0 4.833-3.922 8.752-8.758 8.752C3.922 20 0 16.081 0 11.248 0 6.507 3.774 2.645 8.482 2.5Z" clip-rule="evenodd"/>
                 </svg>
