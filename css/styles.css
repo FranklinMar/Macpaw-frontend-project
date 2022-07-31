@@ -538,7 +538,7 @@ main .right .content .main .gallery-grid .grid-item > div > button:active {
   background: #FF868E;
 }
 main .right .content .main .gallery-grid .grid-item > div > button:active svg {
-  webkit-animation: rotating 1s linear infinite;
+  -webkit-animation: rotating 1s linear infinite;
   -moz-animation: rotating 1s linear infinite;
   -ms-animation: rotating 1s linear infinite;
   -o-animation: rotating 1s linear infinite;
