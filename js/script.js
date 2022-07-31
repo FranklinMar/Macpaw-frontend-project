@@ -12,7 +12,7 @@ let check = null;
 let home = document.getElementById("home");
 let prev = document.getElementById("prev");
 let next = document.getElementById("next");
-let options = document.getElementById("options");
+// let options = document.getElementById("options");
 let mainContent = document.getElementById("main-content");
 let galleryBreeds = document.getElementById("galleryBreeds");
 let breedsBreeds = document.getElementById("breedsBreeds");
@@ -108,7 +108,10 @@ function buttonsListener() {
             title = "VOTING";
         }
         currentParam.changeItems();
-        document.getElementById("title").innerText = title;
+        // document.getElementById("title").innerText = title;
+        for (let i of document.getElementsByClassName("title")) {
+            i.innerText = title;
+        }
     } else {
 
         for (let button of buttons) {
