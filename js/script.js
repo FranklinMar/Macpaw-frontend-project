@@ -204,15 +204,7 @@ function prevPage(element, params) {
 
     if (params.dict.page > 0) {
         params.dict.page--;
-        let bool;
-        if (params.hasOwnProperty("fullList")) {
-            bool = false;
-            params.list = params.fullList.slice(params.dict.page * params.dict.limit,
-                (params.dict.page + 1) * params.dict.limit);
-        } else {
-            bool = true;
-        }
-        changePage(params, bool);
+        changePage(params, checking(params));
     }
 }
 
@@ -223,15 +215,7 @@ function nextPage(element, params) {
     let pages = params.listLength/params.dict.limit;
     if (params.dict.page < pages) {
         params.dict.page++;
-        let bool;
-        if (params.hasOwnProperty("fullList")) {
-            bool = false;
-            params.list = params.fullList.slice(params.dict.page * params.dict.limit,
-                (params.dict.page + 1) * params.dict.limit);
-        } else {
-            bool = true;
-        }
-        changePage(params, bool);
+        changePage(params, checking(params));
     }
 }
 
@@ -338,6 +322,22 @@ function itemGenerator(curLimit) {
             }
         }
     }
+}
+
+function checking(params) {
+    if (!(params instanceof QueryParams)) {
+        throw new Error("Invalid type param");
+    }
+
+    let bool;
+    if (params.hasOwnProperty("fullList")) {
+        bool = false;
+        params.list = params.fullList.slice(params.dict.page * params.dict.limit,
+            (params.dict.page + 1) * params.dict.limit);
+    } else {
+        bool = true;
+    }
+    return bool;
 }
 
 function ajax_get(url) {
