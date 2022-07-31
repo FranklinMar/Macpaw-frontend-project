@@ -14,6 +14,8 @@ let prev = document.getElementById("prev");
 let next = document.getElementById("next");
 let options = document.getElementById("options");
 let mainContent = document.getElementById("main-content");
+let galleryBreeds = document.getElementById("galleryBreeds");
+let breedsBreeds = document.getElementById("breedsBreeds");
 
 const key = "af5697f4-7d20-4967-9fad-94df7846fcd3";
 // const breedsListUrl = "https://api.thecatapi.com/v1/breeds?attach_breed=0";
@@ -60,13 +62,14 @@ breeds.check = document.querySelector('input[name="sort"]:checked');//null; CHEC
         i.style.alignItems = "end";
         i.firstElementChild.style.width = "100%";
         i.firstElementChild.innerHTML = this.list[index].name;
-        if (this.list[index].image) {
+        /*if (this.list[index].image) {
             i.style.setProperty('--background', `url(${this.list[index].image.url})`);
         } else {
             i.style.setProperty('--background', "url(" +
                 ajax_get(`https://api.thecatapi.com/v1/images/search?size=thumb&order=ASC&breed_id=${
                     this.list[index].id}`).data[0].url + ")");
-        }
+        }*/
+        i.style.setProperty('--background', `url(${this.list[index].image.url})`);
         index++;
     }
 }
@@ -122,16 +125,34 @@ function buttonsListener() {
 function limitBreeds(element){
     // breeds.dict.page = 0 ;
 
+    /* OLD
     breeds.dict.limit = element.options[element.selectedIndex].value;
     breeds.dict.page = breeds.check.value === "ASC" ? 0 : Math.ceil(breeds.listLength/breeds.dict.limit) - 1;
-    changePage(breeds);
+    changePage(breeds);*/
+
+    breeds.dict.limit = element.options[element.selectedIndex].value;
+    breeds.dict.page = 0;
+    breedsBreeds.value = "0";
+    breeds.list = breeds.fullList.slice(breeds.dict.page * breeds.dict.limit,
+        (breeds.dict.page + 1) * breeds.dict.limit);
+    changePage(breeds, false);
 }
 
 function sortListener(element) {
-    breeds.check = document.querySelector('input[name="sort"]:checked');
+    // breeds.check = document.querySelector('input[name="sort"]:checked');
+    // breeds.dict.page = breeds.check.value === "ASC" ? 0 : Math.ceil(breeds.listLength/breeds.dict.limit) - 1;
 
-    breeds.dict.page = breeds.check.value === "ASC" ? 0 : Math.ceil(breeds.listLength/breeds.dict.limit) - 1;
-    changePage(breeds);
+    breeds.check = element;
+    breedsBreeds.value = "0";
+    breeds.dict.page = 0;
+    breeds.fullList.sort((a, b) => (a.name > b.name) ? 1 : -1);
+    if (breeds.check.value === "DESC") {
+        breeds.fullList.reverse();
+        // console.log("Reversed");
+    }
+    breeds.list = breeds.fullList.slice(breeds.dict.page * breeds.dict.limit,
+        (breeds.dict.page + 1) * breeds.dict.limit);
+    changePage(breeds, false);
     /* CHECKBOX
     breeds.dict.page = 0;
     let checkBoxes = document.querySelectorAll('input[name="sort"]:checked');
@@ -145,6 +166,23 @@ function sortListener(element) {
     // console.log(breeds.check ? breeds.check.id : breeds.check);
     // let value = document.querySelector('input[name="sort"]:checked');
     let value = breeds.check;*/
+}
+
+function breedsListener(element) {
+    breeds.dict.page = 0;
+
+    let breed = element.options[element.selectedIndex].value;
+    if (breed !== "0") {
+        breeds.list = [Object.assign({}, breeds.fullList.find(i => i.id === breed))];
+        // console.log()
+        breeds.list[0].image = ajax_get(`https://api.thecatapi.com/v1/images/search?size=thumb&order=ASC&breed_id=${
+            breed}`).data[0];
+    } else {
+        breeds.list = breeds.fullList.slice(breeds.dict.page * breeds.dict.limit,
+            (breeds.dict.page + 1) * breeds.dict.limit);
+    }
+    changePage(breeds, false);
+    next.setAttribute("disabled", "");
 }
 
 function limitGallery(element){
@@ -163,7 +201,15 @@ function prevPage(element, params) {
 
     if (params.dict.page > 0) {
         params.dict.page--;
-        changePage(params);
+        let bool;
+        if (params.hasOwnProperty("fullList")) {
+            bool = false;
+            params.list = params.fullList.slice(params.dict.page * params.dict.limit,
+                (params.dict.page + 1) * params.dict.limit);
+        } else {
+            bool = true;
+        }
+        changePage(params, bool);
     }
 }
 
@@ -174,7 +220,15 @@ function nextPage(element, params) {
     let pages = params.listLength/params.dict.limit;
     if (params.dict.page < pages) {
         params.dict.page++;
-        changePage(params);
+        let bool;
+        if (params.hasOwnProperty("fullList")) {
+            bool = false;
+            params.list = params.fullList.slice(params.dict.page * params.dict.limit,
+                (params.dict.page + 1) * params.dict.limit);
+        } else {
+            bool = true;
+        }
+        changePage(params, bool);
     }
 }
 
@@ -288,8 +342,8 @@ function ajax_get(url) {
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            console.log(this.responseText);
-            console.log(this.getAllResponseHeaders());
+            // console.log(this.responseText);
+            // console.log(this.getAllResponseHeaders());
         }
     });
     xmlHttp.open("GET", url, false);
@@ -333,17 +387,22 @@ for (let button of buttons) {
 }
 
 // Initializing breeds list
-let galleryBreeds = document.getElementById("galleryBreeds");
-let breedsBreeds = document.getElementById("breedsBreeds");
-let breedsObj = ajax_get(breedsListUrl);
+// let breedsObj = ajax_get(breedsListUrl);
 let option;
-for (let item of breedsObj.data/*breeds.list*/) {
+breeds.fullList = ajax_get(breedsListUrl).data;
+for (let item of breeds.fullList/*breedsObj.data*//*breeds.list*/) {
     option = document.createElement("option");
     option.value = item.id;
     option.innerText = item.name;
     galleryBreeds.appendChild(option);
     breedsBreeds.appendChild(option.cloneNode(true));
+
+    if (!item.image) {
+        item.image = ajax_get(`https://api.thecatapi.com/v1/images/search?size=thumb&order=ASC&breed_id=${
+                item.id}`).data[0];
+    }
 }
+breeds.listLength = breeds.fullList.length;
 
 // Add "skeleton" of content grid
 itemGenerator(5);

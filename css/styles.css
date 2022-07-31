@@ -15,6 +15,12 @@ main .left {
   align-items: flex-start;
   gap: 75px;
 }
+main .left:first-child {
+  position: fixed;
+}
+main .left:nth-child(2) {
+  visibility: hidden;
+}
 main .left .content {
   position: relative;
   width: 100%;

@@ -19,6 +19,15 @@ main {
     align-items: flex-start;
     gap: 75px;
 
+    &:first-child {
+      position: fixed;
+      //z-index: 10;
+    }
+
+    &:nth-child(2) {
+      visibility: hidden;
+    }
+
     .content {
       //position: fixed;
       position: relative;

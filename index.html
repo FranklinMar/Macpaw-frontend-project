@@ -50,6 +50,43 @@
       </div>
     </div>
   </div>
+  <div class="left">
+    <nav>
+      <img src="img/logo.svg" alt="Logo">
+      <img src="img/petspaw.svg" alt="PetsPaw">
+    </nav>
+    <div class="content">
+      <h1>Hi intern!</h1>
+      <p class="faded">Welcome to MI 2022 Front-end test</p>
+      <p class="header">Lets start using The Cat API</p>
+      <div class="menu">
+        <div>
+          <label for="voting" class="button">
+            VOTING
+          </label>
+          <div class="icon blue-back">
+            <img src="img/voting.svg" alt="Voting">
+          </div>
+        </div>
+        <div>
+          <label for="breeds" class="button">
+            BREEDS
+          </label>
+          <div class="icon green-back">
+            <img src="img/breeds.png" alt="Breeds">
+          </div>
+        </div>
+        <div>
+          <label for="gallery" class="button">
+            GALLERY
+          </label>
+          <div class="icon yellow-back">
+            <img src="img/gallery.svg" alt="Gallery">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="right">
     <!--      <div id="home">-->
     <div class="background" id="home">
@@ -93,7 +130,7 @@
       <div class="main">
         <div class="options" id="options">
           <div>
-            <div class="pink-button" onclick="check = null; buttonsListener();">
+            <div class="pink-button" onclick="check = null; buttonsListener(this);">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
                   viewBox="0 0 12 20">
                 <path fill="#FF868E"
@@ -104,7 +141,7 @@
               <!--              BREEDS-->
             </div>
           </div>
-          <select class="breeds-selector" id="breedsBreeds">
+          <select class="breeds-selector" id="breedsBreeds" onchange="breedsListener(this);">
             <option value="0">All breeds</option>
             <!--<option value="Abyssinian">Abyssinian</option>
             <option value="Aegean">Aegean</option>
@@ -191,7 +228,7 @@
                 <option value="20">20 items per page</option>
               </select>
               <button onclick="changePage(gallery);/*changePage(galleryLimit, galleryPage, galleryOrder, galleryBreed, type);*/">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 18 20">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 1 18 20">
                   <path fill="#FF868E" fill-rule="evenodd" d="M8.482 2.5 6.934.953 7.886 0l3.172 3.17-3.172 3.169-.952-.953 1.538-1.538a7.409 7.409 0 0 0-7.125 7.4 7.409 7.409 0 0 0 7.41 7.405 7.409 7.409 0 0 0 7.41-7.405v-.674h1.348v.674c0 4.833-3.922 8.752-8.758 8.752C3.922 20 0 16.081 0 11.248 0 6.507 3.774 2.645 8.482 2.5Z" clip-rule="evenodd"/>
                 </svg>
               </button>
