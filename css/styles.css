@@ -1,3 +1,24 @@
+#fade {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 30px 30px 20px 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: max(100vh, max-content, 890px);
+  background: rgba(29, 29, 29, 0.6);
+  z-index: 3;
+}
+#fade #popup {
+  box-sizing: border-box;
+  margin-left: auto;
+  height: 840px;
+  max-width: 680px;
+  background: #F8F8F7;
+  border-radius: 20px;
+  width: 100%;
+}
 main {
   --white: #FFFFFF;
   --black: #1D1D1D;
@@ -73,6 +94,7 @@ main .left .content .menu > div input[type="checkbox"] {
   display: none;
 }
 main .left .content .menu > div .button {
+  user-select: none;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -165,8 +187,8 @@ main .right .content {
   width: 100%;
   min-width: fit-content;
   height: fit-content;
-  padding: 30px 30px 20px 30px;
   margin: 30px 30px 0 0;
+  padding-bottom: 20px;
 }
 main .right .content .pink-button {
   transition: 0.2s;
@@ -237,6 +259,7 @@ main .right .content nav .search {
           }*/
 }
 main .right .content nav .search input {
+  user-select: none;
   min-width: 230px;
   width: 100%;
   outline: none;
@@ -261,6 +284,7 @@ main .right .content nav .search:focus-within {
   outline: 2px solid #FF868E;
 }
 main .right .content nav .button {
+  user-select: none;
   transition: 0.2s;
   cursor: pointer;
   height: 100%;
@@ -358,6 +382,7 @@ main .right .content .main .options .label {
   color: #FFFFFF;
 }
 main .right .content .main .options select {
+  user-select: none;
   display: initial;
   border: none;
   height: 100%;
@@ -409,6 +434,7 @@ main .right .content .main .options input[type="radio"]:checked + .sort-button p
   fill: #FF868E;
 }
 main .right .content .main .options .button {
+  user-select: none;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -548,6 +574,7 @@ main .right .content .main .gallery-grid .grid-item > div > button:active svg pa
   fill: var(--white);
 }
 main .right .content .main .gallery-grid .grid-item select {
+  user-select: none;
   display: initial;
   border: none;
   height: 100%;
@@ -576,7 +603,7 @@ main .right .content .main .page {
   position: relative;
 }
 main .right .content .main .page > img {
-  max-width: inherit;
+  max-width: 640px;
   max-height: 360px;
   height: 360px;
   width: 100%;
@@ -796,6 +823,7 @@ main .right .content .main .footer {
   margin: 12px auto;
 }
 main .right .content .main .footer button {
+  user-select: none;
   cursor: pointer;
   display: flex;
   flex-direction: row;

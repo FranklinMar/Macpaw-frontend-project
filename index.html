@@ -9,6 +9,9 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 </head>
 <body>
+<div id="fade">
+  <div id="popup"></div>
+</div>
 <main>
   <div class="left">
     <nav>
@@ -137,7 +140,7 @@
                       d="m.71 10.99 8.6 8.6a1.4 1.4 0 1 0 1.98-1.98L3.681 10l7.61-7.609A1.4 1.4 0 0 0 9.308.411L.71 9.01a1.396 1.396 0 0 0 0 1.98Z"/>
               </svg>
             </div>
-            <div class="label title">
+            <div class="label title" id="title">
               <!--              BREEDS-->
             </div>
           </div>
@@ -176,15 +179,15 @@
                     clip-rule="evenodd"/>
             </svg>
           </label>
-          <div class="button gallery-selector">
+          <div class="button gallery-selector" id="upload">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path fill="#FF868E" fill-rule="evenodd"
                     d="m7.866 0 4.37 4.033-.823.892-2.924-2.7v10.137H7.276V2.305L4.673 4.908l-.857-.858L7.866 0ZM1.213 14.787V7.511H0V16h15.766V7.51h-1.213v7.277H1.213Z"
                     clip-rule="evenodd"/>
             </svg>
             <span>
-                UPLOAD
-              </span>
+              UPLOAD
+            </span>
           </div>
         </div>
         <div class="gallery-grid gallery-selector">
@@ -333,7 +336,7 @@
         </div>
         <!--          <div class="footer"></div>-->
       </div>
-      <div class="main" style="display: none;">
+      <!--<div class="main" style="display: none;">
         <div class="options" id="options">
           <div>
             <div class="pink-button" onclick="check = null; buttonsListener(this);">
@@ -344,11 +347,11 @@
               </svg>
             </div>
             <div class="label title">
-              <!--              BREEDS-->
+              &lt;!&ndash;              BREEDS&ndash;&gt;
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </main>

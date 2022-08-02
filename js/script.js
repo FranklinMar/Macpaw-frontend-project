@@ -13,6 +13,7 @@ let home = document.getElementById("home");
 let prev = document.getElementById("prev");
 let next = document.getElementById("next");
 // let options = document.getElementById("options");
+let content = document.getElementById('content');
 let mainContent = document.getElementById("main-content");
 let galleryBreeds = document.getElementById("galleryBreeds");
 let breedsBreeds = document.getElementById("breedsBreeds");
@@ -90,7 +91,7 @@ function buttonsListener() {
     if (this.checked) {
         let title = null;
         home.style.display = "none";
-        document.getElementById('content').style.display = "flex";
+        content.style.display = "flex";
         for (let i of document.getElementsByClassName(this.id.toString() + "-selector")) {
             i.style.removeProperty("display");
         }
@@ -107,11 +108,11 @@ function buttonsListener() {
         } else if (this.id === 'voting') {
             title = "VOTING";
         }
-        currentParam.changeItems();
-        // document.getElementById("title").innerText = title;
-        for (let i of document.getElementsByClassName("title")) {
+        // currentParam.changeItems();
+        document.getElementById("title").innerText = title;
+        /*for (let i of document.getElementsByClassName("title")) {
             i.innerText = title;
-        }
+        }*/
     } else {
 
         for (let button of buttons) {
@@ -120,7 +121,7 @@ function buttonsListener() {
         for (let i of document.querySelectorAll(".gallery-selector, .breeds-selector")) {
             i.style.display = "none";
         }
-        document.getElementById('content').style.display = "none";
+        content.style.display = "none";
         home.style.display = "initial";
     }
 }
