@@ -7,10 +7,28 @@
   <title>Home</title>
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
   <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <div id="fade">
-  <div id="popup"></div>
+  <div id="popup">
+    <div class="button" onclick="popUp(false);">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
+        <path fill="#FF868E" fill-rule="evenodd" d="M8.057 9 .53 1.471 1.47.53 9 8.057 16.529.53l.942.942L9.943 9l7.528 7.529-.942.942L9 9.943 1.471 17.47l-.941-.94L8.057 9Z" clip-rule="evenodd"/>
+      </svg>
+    </div>
+    <article>
+      <h1>Upload a .jpg or .png Cat Image</h1>
+      <p>Any uploads must comply with the <a href="">upload guidelines</a> or face deletion.</p>
+    </article>
+
+    <div class="image">
+      <div class="file">
+        <p><span>Drag here</span> your file or <span>Click here</span> to upload</p>
+      </div>
+      <p>No file selected</p>
+    </div>
+  </div>
 </div>
 <main>
   <div class="left">
@@ -179,7 +197,7 @@
                     clip-rule="evenodd"/>
             </svg>
           </label>
-          <div class="button gallery-selector" id="upload">
+          <div class="button gallery-selector" id="upload" onclick="popUp();">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
               <path fill="#FF868E" fill-rule="evenodd"
                     d="m7.866 0 4.37 4.033-.823.892-2.924-2.7v10.137H7.276V2.305L4.673 4.908l-.857-.858L7.866 0ZM1.213 14.787V7.511H0V16h15.766V7.51h-1.213v7.277H1.213Z"
