@@ -1,11 +1,4 @@
-/*const likeSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" fill="none" viewBox="0 0 20 24" class="gallery-selector">\n' +
-    '\t<path fill="#FF868E" fill-rule="evenodd" d="M5.38 1.803c-2.235 0-4.047 2.451-4.047 5.475 0 1.452.427 2.844 ' +
-    '1.186 3.87L10 21.269l7.481-10.12c.76-1.026 1.186-2.418 1.186-3.87 0-3.024-1.812-5.475-4.048-5.475-1.073 ' +
-    '0-2.103.577-2.862 1.604l-1.286 1.74c-.26.351-.682.351-.942 0l-1.286-1.74C7.483 2.38 6.454 1.803 5.38 1.803ZM0 ' +
-    '7.278C0 3.258 2.409 0 5.38 0c1.428 0 2.796.767 3.805 2.132L10 3.233l.815-1.101C11.824.767 13.192 0 14.619 0 ' +
-    '17.591 0 20 3.258 20 7.278c0 1.93-.567 3.78-1.576 5.146L10.471 23.18c-.26.352-.682.352-.942 0L1.576 12.424C.566 ' +
-    '11.059 0 9.208 0 7.278Z" clip-rule="evenodd"/>\n' +
-    '</svg>\n';*/
+
 const likeSvg = '<svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 30 26" ' +
     'class="gallery-selector">\n<path fill="#FF868E" fill-rule="evenodd" d="M8.071 2a6.071 6.071 0 0 0-4.293 ' +
     '10.364L15 23.586l11.222-11.222a6.071 6.071 0 1 0-8.586-8.586l-1.929 1.93a1 1 0 0 1-1.414 0l-1.929-1.93A6.071 ' +
@@ -49,8 +42,6 @@ gallery.change = function () {
 
     let index = 0;
     for (let i of items) {
-        // i.style.alignItems = "center";
-        // i.firstElementChild.style.width = "fit-content";
         i.style.setProperty('--background', `url(${this.list[index].url})`);
         for (let j of i.getElementsByClassName("gallery-selector")) {
             j.style.display = "initial";
@@ -67,17 +58,7 @@ breeds.check = document.querySelector('input[name="sort"]:checked');//null; CHEC
     let items = document.getElementsByClassName("item");
     let index = 0;
     for (let i of items) {
-        // i.style.alignItems = "end";
-        // i.firstElementChild.style.width = "100%";
-        // i.firstElementChild.getElementsByTagName("p")[0].innerText = this.list[index].name;
         i.getElementsByTagName("p")[0].innerText = this.list[index].name;
-        /*if (this.list[index].image) {
-            i.style.setProperty('--background', `url(${this.list[index].image.url})`);
-        } else {
-            i.style.setProperty('--background', "url(" +
-                ajax_get(`https://api.thecatapi.com/v1/images/search?size=thumb&order=ASC&breed_id=${
-                    this.list[index].id}`).data[0].url + ")");
-        }*/
         i.style.setProperty('--background', `url(${this.list[index].image.url})`);
         for (let j of i.getElementsByClassName("breeds-selector")) {
             j.style.display = "flex";
@@ -101,7 +82,6 @@ function buttonsListener() {
     check = this;
     if (this.checked) {
         let title = null;
-        // home.style.display = "none";
         $("#home").hide();
         $("#content").fadeIn();
         content.style.display = "flex";
@@ -123,9 +103,6 @@ function buttonsListener() {
         }
         // currentParam.changeItems();
         document.getElementById("title").innerText = title;
-        /*for (let i of document.getElementsByClassName("title")) {
-            i.innerText = title;
-        }*/
     } else {
 
         for (let button of buttons) {
@@ -136,18 +113,12 @@ function buttonsListener() {
         }
         $("content").fadeOut();
         content.style.display = "none";
-        // home.style.display = "initial";
         $("#home").fadeIn();
     }
 }
 
 function limitBreeds(element){
     // breeds.dict.page = 0 ;
-
-    /* OLD
-    breeds.dict.limit = element.options[element.selectedIndex].value;
-    breeds.dict.page = breeds.check.value === "ASC" ? 0 : Math.ceil(breeds.listLength/breeds.dict.limit) - 1;
-    changePage(breeds);*/
 
     breeds.dict.limit = element.options[element.selectedIndex].value;
     breeds.dict.page = 0;
@@ -319,14 +290,9 @@ function itemGenerator(curLimit) {
                 item = document.createElement("div");
                 item.setAttribute("class", `item`);
                 item.style.setProperty("--background", "none");
-                // label = document.createElement("div");
-                // item.append(label);
-                // label.setAttribute("class", "label");
-                // label.innerHTML = likeSvg;
                 item.innerHTML = likeSvg;
                 p = document.createElement("p");
                 p.setAttribute("class", "breeds-selector");
-                // label.appendChild(p);
                 item.appendChild(p);
                 section.appendChild(item);
             }
@@ -434,14 +400,9 @@ itemGenerator(5);
 
 
 function popUp(bool=true) {
-    // let fade = document.getElementById('fade');
     if (bool) {
-        // fade.style.display = "initial";
-        // fade.style.opacity = "1";
         $("#fade").fadeIn();
     } else {
-        // fade.style.display = "none";
-        // fade.style.opacity = "0";
         $("#fade").fadeOut();
     }
 }
