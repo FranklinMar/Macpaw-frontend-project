@@ -611,6 +611,10 @@ main {
             letter-spacing: 2px;
             color: #FFFFFF;
 
+            &.fade {
+              background: #FBE0DC;
+              color: #FF868E;
+            }
           }
 
           select {
@@ -897,6 +901,7 @@ main {
           position: relative;
 
           >img {
+            display: initial;
             max-width: 640px;
             max-height: 360px;
             //height: 100%;
@@ -958,6 +963,12 @@ main {
 
                 path {
                   fill: rgb(var(--buttonSrc));
+                }
+              }
+
+              &.fav {
+                path {
+                  d: var(--dActive, var(--d));
                 }
               }
 
@@ -1036,9 +1047,9 @@ main {
               >svg {
                 max-width: 20px;
                 max-height: 20px;
-                >path {
+                /*>path {
                   fill: var(--background);
-                }
+                }*/
               }
             }
           }
@@ -1098,7 +1109,8 @@ main {
               width: 100%;
               min-width: fit-content;
               background: rgba(255, 134, 142, 0) var(--background) center center/cover;
-              padding: 0 10px 10px 10px;
+              //padding: 0 10px 10px 10px;
+              padding: 10px;
               display: flex;
               //align-content: center;
               align-items: end;

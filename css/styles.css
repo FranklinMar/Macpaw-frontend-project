@@ -478,6 +478,10 @@ main .right .content .main .options .label {
   letter-spacing: 2px;
   color: #FFFFFF;
 }
+main .right .content .main .options .label.fade {
+  background: #FBE0DC;
+  color: #FF868E;
+}
 main .right .content .main .options select {
   user-select: none;
   display: initial;
@@ -700,6 +704,7 @@ main .right .content .main .page {
   position: relative;
 }
 main .right .content .main .page > img {
+  display: initial;
   max-width: 640px;
   max-height: 360px;
   height: 360px;
@@ -747,6 +752,9 @@ main .right .content .main .page .buttons .button:hover {
 }
 main .right .content .main .page .buttons .button:hover path {
   fill: rgb(var(--buttonSrc));
+}
+main .right .content .main .page .buttons .button.fav path {
+  d: var(--dActive, var(--d));
 }
 main .right .content .main .page .buttons .button:active {
   transition: 0s;
@@ -811,9 +819,9 @@ main .right .content .main .page .logs .log > p span {
 main .right .content .main .page .logs .log > svg {
   max-width: 20px;
   max-height: 20px;
-}
-main .right .content .main .page .logs .log > svg > path {
-  fill: var(--background);
+  /*>path {
+                  fill: var(--background);
+                }*/
 }
 main .right .content .main .grid {
   display: flex;
@@ -856,7 +864,7 @@ main .right .content .main .grid > section .item {
   width: 100%;
   min-width: fit-content;
   background: rgba(255, 134, 142, 0) var(--background) center center / cover;
-  padding: 0 10px 10px 10px;
+  padding: 10px;
   display: flex;
   align-items: end;
   align-content: stretch;
