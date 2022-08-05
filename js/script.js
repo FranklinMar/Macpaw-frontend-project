@@ -17,10 +17,21 @@ let galleryBreeds = document.getElementById("galleryBreeds");
 let breedsBreeds = document.getElementById("breedsBreeds");
 
 const key = "af5697f4-7d20-4967-9fad-94df7846fcd3";
+const sub = "user-123";
 // const breedsListUrl = "https://api.thecatapi.com/v1/breeds?attach_breed=0";
 const breedsListUrl = "https://api.thecatapi.com/v1/breeds?";
 // let gallerySearchUrl = "https://api.thecatapi.com/v1/images/search?size=full&limit={0}&page={1}&order=ASC";
 let gallerySearchUrl = "https://api.thecatapi.com/v1/images/search?size=thumb";
+let favUrl = "https://api.thecatapi.com/v1/favourites";
+
+
+let favourites;
+
+(async function(){
+    favourites = await ajax_get(favUrl + `?sub_id=${sub}`, "GET");
+    favourites = favourites.data;
+})();
+
 
 class QueryParams {
     constructor(dictionary, query, list=[], listLength) {
@@ -37,27 +48,39 @@ class QueryParams {
 
 let gallery = new QueryParams({"limit": 5, "page": 0, "order": null, "breed_id": null, "mime_types": null},
     gallerySearchUrl);
-gallery.change = function () {
+gallery.change = (function () {
     let items = document.getElementsByClassName("item");
 
     let index = 0;
+    let fav;
+    // favourites = await ajax_get(favUrl + `?sub_id=${sub}`, "GET");
+    // favourites = favourites.data;
+    // console.log(favourites);
     for (let i of items) {
+        i.setAttribute("data-id", this.list[index].id);
+        fav = favourites.find(obj => obj['image_id'] === this.list[index].id);
+        // if (favourites.some((element) => element["image_id"] === this.list[index].id)) {
+        if (fav) {
+            i.classList.add("fav");
+            i.setAttribute("data-fav-id", fav.id);
+        }
         i.style.setProperty('--background', `url(${this.list[index].url})`);
         for (let j of i.getElementsByClassName("gallery-selector")) {
             j.style.display = "initial";
         }
         index++;
     }
-}
+});
 
 
 // TODO В сраку їхню пагінацію. Треба створити власну і не паритись
 let breeds = new QueryParams({"limit": 5, "page": 0}, breedsListUrl);
 breeds.check = document.querySelector('input[name="sort"]:checked');//null; CHECKBOX
-    breeds.change = function () {
+    breeds.change = (function () {
     let items = document.getElementsByClassName("item");
     let index = 0;
     for (let i of items) {
+        // i.setAttribute("data-id", this.list[index].id);
         i.getElementsByTagName("p")[0].innerText = this.list[index].name;
         i.style.setProperty('--background', `url(${this.list[index].image.url})`);
         for (let j of i.getElementsByClassName("breeds-selector")) {
@@ -65,8 +88,9 @@ breeds.check = document.querySelector('input[name="sort"]:checked');//null; CHEC
         }
         index++;
     }
-}
+});
 let currentParam;
+
 
 
 // Buttons check listener
@@ -93,11 +117,11 @@ function buttonsListener() {
             title = "BREEDS";
             currentParam = breeds;
 
-            changePage(breeds, breeds.list.length === 0);
+            void changePage(breeds, breeds.list.length === 0);
         } else if (this.id === 'gallery') {
             title = "GALLERY";
             currentParam = gallery;
-            changePage(gallery, gallery.list.length === 0);
+            void changePage(gallery, gallery.list.length === 0);
         } else if (this.id === 'voting') {
             title = "VOTING";
         }
@@ -125,7 +149,7 @@ function limitBreeds(element){
     breedsBreeds.value = "0";
     breeds.list = breeds.fullList.slice(breeds.dict.page * breeds.dict.limit,
         (breeds.dict.page + 1) * breeds.dict.limit);
-    changePage(breeds, false);
+    void changePage(breeds, false);
 }
 
 function sortListener(element) {
@@ -142,7 +166,7 @@ function sortListener(element) {
     }
     breeds.list = breeds.fullList.slice(breeds.dict.page * breeds.dict.limit,
         (breeds.dict.page + 1) * breeds.dict.limit);
-    changePage(breeds, false);
+    void changePage(breeds, false);
     /* CHECKBOX
     breeds.dict.page = 0;
     let checkBoxes = document.querySelectorAll('input[name="sort"]:checked');
@@ -158,20 +182,20 @@ function sortListener(element) {
     let value = breeds.check;*/
 }
 
-function breedsListener(element) {
+async function breedsListener(element) {
     breeds.dict.page = 0;
 
     let breed = element.options[element.selectedIndex].value;
     if (breed !== "0") {
         breeds.list = [Object.assign({}, breeds.fullList.find(i => i.id === breed))];
         // console.log()
-        breeds.list[0].image = ajax_get(`https://api.thecatapi.com/v1/images/search?size=thumb&order=ASC&breed_id=${
-            breed}`).data[0];
+        breeds.list[0].image = (await ajax_get(`https://api.thecatapi.com/v1/images/search?size=thumb&order=ASC&breed_id=${
+            breed}`, "GET")).data[0];
     } else {
         breeds.list = breeds.fullList.slice(breeds.dict.page * breeds.dict.limit,
             (breeds.dict.page + 1) * breeds.dict.limit);
     }
-    changePage(breeds, false);
+    await changePage(breeds, false);
     next.setAttribute("disabled", "");
 }
 
@@ -181,7 +205,7 @@ function limitGallery(element){
 
     gallery.dict.limit = element.options[element.selectedIndex].value;
 
-    changePage(gallery);
+    void changePage(gallery);
 }
 
 function prevPage(element, params) {
@@ -191,7 +215,7 @@ function prevPage(element, params) {
 
     if (params.dict.page > 0) {
         params.dict.page--;
-        changePage(params, checking(params));
+        void changePage(params, checking(params));
     }
 }
 
@@ -202,7 +226,7 @@ function nextPage(element, params) {
     let pages = params.listLength/params.dict.limit;
     if (params.dict.page < pages) {
         params.dict.page++;
-        changePage(params, checking(params));
+        void changePage(params, checking(params));
     }
 }
 
@@ -211,7 +235,7 @@ function orderListener(element) {
     gallery.dict.page = 0;
     prev.setAttribute("disabled", "");
     gallery.dict.order = element.options[element.selectedIndex].value;
-    changePage(gallery);
+    void changePage(gallery);
 }
 
 function galleryBreedsListener(element) {
@@ -219,7 +243,7 @@ function galleryBreedsListener(element) {
     gallery.dict.page = 0;
     let breed = element.options[element.selectedIndex].value;
     gallery.dict.breed_id = (breed === "none") ? null : breed;
-    changePage(gallery);
+    void changePage(gallery);
 }
 
 function typeListener(element) {
@@ -227,10 +251,10 @@ function typeListener(element) {
     gallery.dict.page = 0;
     let type = element.options[element.selectedIndex].value;
     gallery.dict.mime_types = (type === "none") ? null : type;
-    changePage(gallery);
+    void changePage(gallery);
 }
 
-function changePage(params, queryBool=true) {
+async function changePage(params, queryBool=true) {
     if (!(params instanceof QueryParams)) {
         throw new Error("Invalid type param");
     }
@@ -241,7 +265,7 @@ function changePage(params, queryBool=true) {
                 query += `&${i}=${params.dict[i]}`;
             }
         }
-        let obj = ajax_get(query);
+        let obj = await ajax_get(query, "GET");
         params.list = obj.data;
         params.listLength = obj.length == null ? params.list.length : obj.length;
     }
@@ -278,7 +302,7 @@ function itemGenerator(curLimit) {
     if (curLimit !== items) {
         let sections = mainContent.getElementsByTagName("section");
 
-        let section, item, /*label, */p;
+        let section, item, p;
         section = sections[sections.length - 1];
         if (Number(curLimit) > Number(items)) {
             for (let i = 0; i < curLimit - items; i++) {
@@ -291,6 +315,7 @@ function itemGenerator(curLimit) {
                 item.setAttribute("class", `item`);
                 item.style.setProperty("--background", "none");
                 item.innerHTML = likeSvg;
+                item.addEventListener('click', clickListener);
                 p = document.createElement("p");
                 p.setAttribute("class", "breeds-selector");
                 item.appendChild(p);
@@ -312,6 +337,30 @@ function itemGenerator(curLimit) {
     }
 }
 
+async function clickListener() {
+    if (check.id === 'breeds') {
+
+    } else if (check.id === 'gallery') {
+        if (!this.classList.contains("fav")) {
+            let body = {
+                "image_id": this.getAttribute("data-id"),
+                "sub_id": sub
+            };
+            let fav = await ajax_get(favUrl, "POST", body);
+            fav = fav.data;
+            // void ajax_get(favUrl + `?sub_id=${sub}`, "GET");
+            this.classList.add("fav");
+            this.setAttribute("data-fav-id", fav.id);
+        } else {
+            // void ajax_get(favUrl + `/${this.getAttribute("data-id")}`, "DELETE");
+            void await ajax_get(favUrl + `/${this.getAttribute("data-fav-id")}`, "DELETE");
+            this.classList.remove("fav");
+        }
+        favourites = await ajax_get(favUrl + `?sub_id=${sub}`, "GET");
+        favourites = favourites.data;
+    }
+}
+
 function checking(params) {
     if (!(params instanceof QueryParams)) {
         throw new Error("Invalid type param");
@@ -328,16 +377,54 @@ function checking(params) {
     return bool;
 }
 
-function ajax_get(url) {
+async function ajax_get(url, method, body) {
     console.log(url);
-    let xmlHttp = new XMLHttpRequest();
+    let object = {
+        method: method,
+        headers: { 'x-api-key': key, "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+    };
+    /*if (method === "POST") {
+        object.body = body;
+    }*/
+    // console.log(response);
+    /*for (let i of response.headers.keys()) {
+        console.log(`${i} : ${response.headers.get(i)}`);
+    }*/
+
+
+    let response = await fetch(url, object);
+    object = {};
+    for (let i of response.headers.keys()) {
+        object[i] = response.headers.get(i);
+    }
+    console.log(object);
+    let data = await response.json();
+    console.log(data);
+    return {"data": data, "length": object["pagination-count"]};
+
+    /*return fetch(url, object).then(response => {
+        object = {};
+        for (let i of response.headers.keys()) {
+            object[i] = response.headers.get(i);
+        }
+        console.log(object);
+        return response.json();
+    }).then(data => {
+        console.log(data);
+        // console.log({"data": data, "length": object["pagination-count"]});
+        return {"data": data, "length": object["pagination-count"]};
+    }).catch(function(err) {
+        console.log(err);
+    });*/
+    /*let xmlHttp = new XMLHttpRequest();
     xmlHttp.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            // console.log(this.responseText);
+            console.log(this.responseText);
             // console.log(this.getAllResponseHeaders());
         }
     });
-    xmlHttp.open("GET", url, false);
+    xmlHttp.open(method, url, false);
     xmlHttp.setRequestHeader("x-api-key", key);
     // xmlHttp.setRequestHeader("Access-Control-Expose-Headers", "Pagination-Count");
     xmlHttp.send();
@@ -348,7 +435,7 @@ function ajax_get(url) {
     } catch (e) {
         pages = null;
     }
-    return {"data": JSON.parse(xmlHttp.responseText), "length": pages};
+    return {"data": JSON.parse(xmlHttp.responseText), "length": pages};*/
     /*xmlHttp.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
             console.log(this.responseText);
@@ -379,22 +466,29 @@ for (let button of buttons) {
 
 // Initializing breeds list
 // let breedsObj = ajax_get(breedsListUrl);
-let option;
-breeds.fullList = ajax_get(breedsListUrl).data;
-for (let item of breeds.fullList/*breedsObj.data*//*breeds.list*/) {
-    option = document.createElement("option");
-    option.value = item.id;
-    option.innerText = item.name;
-    galleryBreeds.appendChild(option);
-    breedsBreeds.appendChild(option.cloneNode(true));
+(async function(){
+    let option;
+    // let obj = await ajax_get(breedsListUrl, "GET");
+    // console.log(obj);
+    // console.log(obj.data);
+    // breeds.fullList = obj.data;
+    breeds.fullList = await ajax_get(breedsListUrl, "GET");
+    breeds.fullList = breeds.fullList.data;
+    for (let item of breeds.fullList/*breedsObj.data*//*breeds.list*/) {
+        option = document.createElement("option");
+        option.value = item.id;
+        option.innerText = item.name;
+        galleryBreeds.appendChild(option);
+        breedsBreeds.appendChild(option.cloneNode(true));
 
-    if (!item.image) {
-        item.image = ajax_get(`https://api.thecatapi.com/v1/images/search?size=thumb&order=ASC&breed_id=${
-                item.id}`).data[0];
-    }
+        if (!item.image) {
+            item.image = await ajax_get(`https://api.thecatapi.com/v1/images/search?size=thumb&order=ASC&breed_id=${
+                    item.id}`, "GET");
+            item.image = item.image.data[0];
+        }
 }
 breeds.listLength = breeds.fullList.length;
-
+})();
 // Add "skeleton" of content grid
 itemGenerator(5);
 
