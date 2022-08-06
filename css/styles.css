@@ -701,9 +701,11 @@ main .right .content .main .page {
   max-width: inherit;
   width: 100%;
   height: 100%;
+  min-height: fit-content;
   position: relative;
 }
 main .right .content .main .page > img {
+  transition: 0.2s linear;
   display: initial;
   max-width: 640px;
   max-height: 360px;
@@ -769,6 +771,110 @@ main .right .content .main .page .buttons .button:first-child {
 }
 main .right .content .main .page .buttons .button:last-child {
   border-radius: 0 20px 20px 0;
+}
+main .right .content .main .page .image-selection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 5px;
+  max-width: fit-content;
+  background: #FFFFFF;
+  border-radius: 20px;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 345px;
+}
+main .right .content .main .page .image-selection svg {
+  width: 10px;
+  height: 10px;
+  background: #FBE0DC;
+  border-radius: 10px;
+}
+main .right .content .main .page .image-selection svg:hover {
+  transition: 0.1s linear;
+  background: rgba(255, 134, 142, 0.6);
+}
+main .right .content .main .page .image-selection svg.active {
+  background: #FF868E;
+}
+main .right .content .main .page .breed-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 40px;
+  gap: 10px;
+  max-width: fit-content;
+  min-height: fit-content;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 378px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  /* identical to box height */
+  color: #1D1D1D;
+}
+main .right .content .main .page .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border: 2px solid #FBE0DC;
+  border-radius: 20px;
+  width: 100%;
+  height: fit-content;
+  min-height: 100px;
+  margin-top: 44px;
+  padding: 27px 40px 39px 40px;
+}
+main .right .content .main .page .info h1 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  /* identical to box height */
+  color: #8C8C8C;
+  text-align: center;
+}
+main .right .content .main .page .info .description {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /*display: grid;
+              grid-template-columns: repeat(2, 1fr);*/
+  justify-content: space-between /*center*/;
+  gap: 5px;
+  align-items: flex-start;
+}
+main .right .content .main .page .info .description > * {
+  max-width: 50%;
+}
+main .right .content .main .page .info .description p {
+  width: 100%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  color: #8C8C8C;
+}
+main .right .content .main .page .info .description p span {
+  font-weight: 700;
+  color: #1D1D1D;
+}
+main .right .content .main .page .info .description .column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
 main .right .content .main .page .logs {
   margin-top: 52px;
@@ -989,7 +1095,24 @@ main .right #content {
 }
 main .right .breeds-selector,
 main .right .gallery-selector,
-main .right .voting-selector {
+main .right .voting-selector,
+main .right .breeds-page-selector {
   display: none;
+}
+#breed-id-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 30px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  /* identical to box height, or 150% */
+  text-align: center;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  background: #FF868E;
+  border-radius: 10px;
 }
 /*# sourceMappingURL=styles.css.map */

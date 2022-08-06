@@ -151,7 +151,7 @@
       <div class="main">
         <div class="options">
           <div>
-            <div class="pink-button" onclick="check = null; buttonsListener(this);">
+            <div class="pink-button" onclick="check.pop(); buttonsListener(false);"><!--onclick="check = null; buttonsListener(this);"-->
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
                   viewBox="0 0 12 20">
                 <path fill="#FF868E"
@@ -161,7 +161,7 @@
             <div class="label title" id="title">
               <!--              BREEDS-->
             </div>
-            <div class="breeds-page-selector">
+            <div class="breeds-page-selector" id="breed-id-label">
 
             </div>
           </div>
@@ -260,7 +260,8 @@
           </div>
         </div>
         <div class="page">
-          <img src="https://www.developingngo.org/wp-content/uploads/2018/01/2560x1440-gray-solid-color-background.jpg" alt="" id="vote-img" class="voting-selector">
+          <img src="https://www.developingngo.org/wp-content/uploads/2018/01/2560x1440-gray-solid-color-background.jpg"
+               alt="" id="vote-breed-img" class="voting-selector breeds-page-selector">
           <div class="buttons voting-selector">
             <div class="button"
                 style="--buttonSrc: 151, 234, 185;/*#97EAB9;*/ --d: path('M0 15C0 6.716 6.716 0 15 0c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15ZM15 2C7.82 2 2 7.82 2 15s5.82 13 13 13 13-5.82 13-13S22.18 2 15 2Zm-5 10H8v-2h2v2Zm12 0h-2v-2h2v2ZM9.2 16.6l.6.8c2.6 3.467 7.8 3.467 10.4 0l.6-.8 1.6 1.2-.6.8c-3.4 4.533-10.2 4.533-13.6 0l-.6-.8 1.6-1.2Z');" onclick="voteListener(1);">
@@ -282,6 +283,28 @@
                   viewBox="0 0 30 30">
                 <path fill="#FF868E" d="" fill-rule="evenodd" clip-rule="evenodd"/>
               </svg>
+            </div>
+          </div>
+          <div class="image-selection breeds-page-selector" id="image-selection">
+<!--            <svg class="active"></svg>-->
+            <!--<svg></svg>
+            <svg></svg>
+            <svg></svg>
+            <svg></svg>-->
+          </div>
+          <div class="breed-name breeds-page-selector" id="breed-name">
+            <!--Basenji-->
+          </div>
+          <div class="info breeds-page-selector">
+            <h1 id="breed-info"><!--Family companion cat--></h1>
+            <div class="description">
+              <p id="breed-description"><!--<span>Temperament:</span><br>
+                Active, Energetic, Independent, Intelligent, Gentle--></p>
+              <div class="column" id="breed-column">
+                <p><!--<span>Origin:</span> United States--></p>
+                <p><!--<span>Weight:</span> 3 - 5 kgs--></p>
+                <p><!--<span>Life span:</span> 14 - 15 years--></p>
+              </div>
             </div>
           </div>
           <div class="logs voting-selector" id="logs">

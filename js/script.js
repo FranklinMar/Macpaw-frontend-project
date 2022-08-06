@@ -18,7 +18,8 @@ const sadSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" f
     '0l.6.8-1.6 1.2-.6-.8c-2.6-3.467-7.8-3.467-10.4 0l-.6.8-1.6-1.2Z" clip-rule="evenodd"/>\n</svg>';
 
 let buttons = document.getElementById("menu").getElementsByTagName("input");
-let check = null, checkBreedId = null;
+// let check = null, checkBreedId = null;
+let check = [];
 // let home = document.getElementById("home");
 // let options = document.getElementById("options");
 let titleNode = document.getElementById("title");
@@ -29,9 +30,16 @@ let prev = document.getElementById("prev");
 let next = document.getElementById("next");
 
 let galleryBreeds = document.getElementById("galleryBreeds");
-let breedsBreeds = document.getElementById("breedsBreeds");
 
-let voteImg = document.getElementById("vote-img");
+let breedsBreeds = document.getElementById("breedsBreeds");
+let breedIdLabel = document.getElementById("breed-id-label");
+let breedName = document.getElementById("breed-name");
+let breedInfo = document.getElementById("breed-info");
+let breedDesc = document.getElementById("breed-description");
+let breedColumn = document.getElementById("breed-column");
+let imageSelection = document.getElementById("image-selection")
+
+let voteBreedImg = document.getElementById("vote-breed-img");
 let logs = document.getElementById("logs");
 let favVote = document.getElementById("fav-vote")
 
@@ -85,8 +93,12 @@ gallery.change = (function () {
             i.setAttribute("data-fav-id", fav.id);
         }
         i.style.setProperty('--background', `url(${this.list[index].url})`);
+        for (let j of i.querySelectorAll(".breeds-selector")) {
+            j.style.display = "none";
+        }
         for (let j of i.getElementsByClassName("gallery-selector")) {
-            j.style.display = "initial";
+            // j.style.display = "initial";
+            j.style.removeProperty("display");
         }
         index++;
     }
@@ -101,10 +113,15 @@ breeds.check = document.querySelector('input[name="sort"]:checked');//null; CHEC
     let index = 0;
     for (let i of items) {
         // i.setAttribute("data-id", this.list[index].id);
+        i.setAttribute("data-breed-id", this.list[index].id);
         i.getElementsByTagName("p")[0].innerText = this.list[index].name;
         i.style.setProperty('--background', `url(${this.list[index].image.url})`);
+        for (let j of i.querySelectorAll(".gallery-selector")) {
+            j.style.display = "none";
+        }
         for (let j of i.getElementsByClassName("breeds-selector")) {
             j.style.display = "flex";
+            /*j.style.removeProperty("display");*/
         }
         index++;
     }
@@ -114,42 +131,55 @@ let currentParam;
 let voteObject;
 
 
-
 // Buttons check listener
-function buttonsListener() {
-    if (check && check !== this) {
-        check.checked = false;
+function buttonsListener(bool=true) {
+    /*if (check.length !== 0 && check[0] !== this) {
+        check[0].checked = false;
+    }*/
+    if (bool) {
+        let checkBoxes = document.querySelectorAll('input[name="group"]:checked');
+
+        for (let box of checkBoxes) {
+            if (box !== this) {
+                box.checked = false;
+            }
+        }
+        check[0] = this.checked ? this : null;
     }
 
-    for (let i of document.querySelectorAll(".gallery-selector, .breeds-selector, .voting-selector")) {
+    for (let i of document.querySelectorAll(".gallery-selector, .breeds-selector, .voting-selector," +
+        " .breeds-page-selector")) {
         i.style.display = "none";
     }
 
-    check = this;
-    if (this.checked) {
-        let title = null;
+    /*check[0] = this;
+    if (this.checked) {*/
+    titleNode.classList.remove("fade");
+    if (check[0]) {
+        let title;
         $("#home").hide();
         $("#content").fadeIn();
         content.style.display = "flex";
-        for (let i of document.getElementsByClassName(this.id.toString() + "-selector")) {
+        for (let i of document.getElementsByClassName(/*this*/check[0].id.toString() + "-selector")) {
             i.style.removeProperty("display");
         }
 
-        if (this.id === 'breeds') {
+        if (/*this*/check[0].id === 'breeds') {
             title = "BREEDS";
             currentParam = breeds;
 
-            if (checkBreedId == null) {
-                titleNode.classList.remove("fade");
+            // if (checkBreedId == null) {
+            if (check.length < 2/*!check[1]*/) {
                 void changePage(breeds, breeds.list.length === 0);
             } else {
                 titleNode.classList.add("fade");
+                void showBreed();
             }
-        } else if (this.id === 'gallery') {
+        } else if (/*this*/check[0].id === 'gallery') {
             title = "GALLERY";
             currentParam = gallery;
             void changePage(gallery, gallery.list.length === 0);
-        } else if (this.id === 'voting') {
+        } else if (/*this*/check[0].id === 'voting') {
             title = "VOTING";
             void votesHandler();
         }
@@ -160,9 +190,9 @@ function buttonsListener() {
         for (let button of buttons) {
             button.checked = false;
         }
-        for (let i of document.querySelectorAll(".gallery-selector, .breeds-selector")) {
+        /*for (let i of document.querySelectorAll(".gallery-selector, .breeds-selector")) {
             i.style.display = "none";
-        }
+        }*/
         $("content").fadeOut();
         content.style.display = "none";
         $("#home").fadeIn();
@@ -200,17 +230,11 @@ async function voteListener(value) {
 }
 
 async function votesHandler() {
-    /*if (!voteObject) {
-    /!*let image*!/voteObject = await ajax(gallerySearchUrl + `?size=full`, "GET");
-    /!*image = image.data[0];*!/
-        voteObject = voteObject.data[0];
-    }*/
     favVote.classList.remove("fav");
     voteObject = await ajax(gallerySearchUrl + `?size=full`, "GET");
     voteObject = voteObject.data[0];
     let votes = await ajax(votesUrl + `?order=DESC&sub_id=${sub}`, "GET");
     // console.log(votes.data);
-    // votes = votes.data;
     logs.innerHTML = "";
     let date, log, strong, p;
     for (let i of votes.data) {
@@ -230,7 +254,7 @@ async function votesHandler() {
     // console.log(votes[0]);
     // console.log(image);
     // console.log(image.url);
-    voteImg.src = voteObject.url;/*image.url;*/
+    voteBreedImg.src = voteObject.url;/*image.url;*/
 }
 
 function limitBreeds(element){
@@ -289,6 +313,56 @@ async function breedsListener(element) {
     }
     await changePage(breeds, false);
     next.setAttribute("disabled", "");
+}
+
+async function showBreed() {
+    for (let i of document.querySelectorAll(".gallery-selector, .breeds-selector, .voting-selector")) {
+        i.style.display = "none";
+    }
+    for (let i of document.querySelectorAll(".breeds-page-selector")) {
+        i.style.removeProperty("display");
+    }
+    breedIdLabel.innerText = check[check.length - 1];
+    // let id = check[1];
+    let breed = breeds.fullList.find(obj => obj.id === check[1]);
+    if (!breed){
+        check.pop();
+        buttonsListener(false);
+    }
+    // console.log(breed);
+    // voteBreedImg.src = breed.image.url;
+    let page = ".page";
+    $(page).fadeOut();
+    let images = await ajax(gallerySearchUrl + `?size=full&breed_ids=${breed.id}&limit=100`, "GET");
+    images = images.data;
+    $(page).fadeIn();
+    console.log(images)
+    // voteBreedImg.src = images[0].url;
+    imageSelection.innerHTML = "";
+    let svg;
+    for (let i of images) {
+        svg = document.createElement("svg");
+        if (i === images[0]) {
+            svg.classList.add("active");
+            voteBreedImg.src = i.url;
+        }
+        svg.setAttribute("data-img-url", i.url);
+        svg.addEventListener('click', function () {
+            // $("vote-breed-img").fadeTo("fast", 0);
+            imageSelection.querySelector(".active").classList.remove("active");
+            this.setAttribute("class", "active");
+            voteBreedImg.src = this.getAttribute("data-img-url");
+            // $("vote-breed-img").fadeTo("fast", 1);
+        })
+        imageSelection.appendChild(svg);
+    }
+    breedName.innerText = breed.name;
+    breedInfo.innerText = breed['alt_names'];
+    breedDesc.innerHTML = `<span>Temperament:</span><br>${breed['temperament']}`;
+    let p = breedColumn.getElementsByTagName("p");
+    p[0].innerHTML = `<span>Origin:</span> ${breed.origin}`;
+    p[1].innerHTML = `<span>Weight:</span> ${breed.weight['metric']} kgs`;
+    p[2].innerHTML = `<span>Life span:</span> ${breed['life_span']} years`;
 }
 
 function limitGallery(element){
@@ -379,7 +453,8 @@ async function changePage(params, queryBool=true) {
         prev.removeAttribute("disabled");
     }
 
-    if (Math.ceil(Number(params.listLength/params.dict.limit)) <= /*breeds - <; gallery - <=*/ Number(params.dict.page + 1) ||
+    // let listLen = queryBool ? params.listLength : params.fullList.length;
+    if (Math.ceil(Number(/*listLen*/params.listLength/params.dict.limit)) <= /*breeds - <; gallery - <=*/ Number(params.dict.page + 1) ||
         (params.dict.hasOwnProperty("order") && (params.dict.order === "RANDOM" || params.dict.order == null))) {
         next.setAttribute("disabled", "");
     } else {
@@ -430,10 +505,17 @@ function itemGenerator(curLimit) {
 }
 
 async function clickListener() {
-    let id = this.getAttribute("data-id");
-    if (check.id === 'breeds') {
-        checkBreedId = id;
-    } else if (check.id === 'gallery') {
+    if (check[0].id === 'breeds') {
+        let breedId = this.getAttribute("data-breed-id");
+    // if (check.id === 'breeds') {
+        // checkBreedId = id;
+        // check[1] = id;
+
+        check.push(breedId);
+        titleNode.classList.add("fade");
+        await showBreed();
+    } else if (check[0].id === 'gallery') {
+        let id = this.getAttribute("data-id");
         if (!this.classList.contains("fav")) {
             let body = {
                 "image_id": id,
