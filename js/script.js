@@ -1,6 +1,5 @@
 
-const likeSvg = '<svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 30 26" ' +
-    'class="gallery-selector">\n<path fill="#FF868E" fill-rule="evenodd" d="M8.071 2a6.071 6.071 0 0 0-4.293 ' +
+const likeSvg = '<svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 30 26">\n<path fill="#FF868E" fill-rule="evenodd" d="M8.071 2a6.071 6.071 0 0 0-4.293 ' +
     '10.364L15 23.586l11.222-11.222a6.071 6.071 0 1 0-8.586-8.586l-1.929 1.93a1 1 0 0 1-1.414 0l-1.929-1.93A6.071 ' +
     '6.071 0 0 0 8.071 2ZM0 8.071a8.071 8.071 0 0 1 13.778-5.707L15 3.586l1.222-1.222a8.071 8.071 0 0 1 11.414 ' +
     '11.414l-11.929 11.93a1 1 0 0 1-1.414 0L2.364 13.777A8.071 8.071 0 0 1 0 8.071Z" clip-rule="evenodd"/>\n</svg>';
@@ -25,7 +24,8 @@ let check = [];
 let titleNode = document.getElementById("title");
 let content = document.getElementById('content');
 
-let mainContent = document.getElementById("main-content");
+let galleryContent = document.getElementById("gallery-content");
+let otherContent = document.getElementById("other");
 let prev = document.getElementById("prev");
 let next = document.getElementById("next");
 
@@ -170,7 +170,7 @@ function buttonsListener(bool=true) {
 
             // if (checkBreedId == null) {
             if (check.length < 2/*!check[1]*/) {
-                void changePage(breeds, breeds.list.length === 0);
+                void changePage(breeds, galleryContent, breeds.list.length === 0);
             } else {
                 titleNode.classList.add("fade");
                 void showBreed();
@@ -178,7 +178,7 @@ function buttonsListener(bool=true) {
         } else if (/*this*/check[0].id === 'gallery') {
             title = "GALLERY";
             currentParam = gallery;
-            void changePage(gallery, gallery.list.length === 0);
+            void changePage(gallery, galleryContent, gallery.list.length === 0);
         } else if (/*this*/check[0].id === 'voting') {
             title = "VOTING";
             void votesHandler();
@@ -235,6 +235,9 @@ async function votesHandler() {
     voteObject = voteObject.data[0];
     let votes = await ajax(votesUrl + `?order=DESC&sub_id=${sub}`, "GET");
     // console.log(votes.data);
+    votes.data = votes.data.concat(favourites);
+    votes.data.sort((a, b) => (a['created_at'] < b['created_at'] ? 1 :
+        (b['created_at'] < a['created_at'] ? -1 : 0)));
     logs.innerHTML = "";
     let date, log, strong, p;
     for (let i of votes.data) {
@@ -245,10 +248,18 @@ async function votesHandler() {
         strong.innerText = `${date.getHours()}:${date.getMinutes()}`;
         log.appendChild(strong);
         p = document.createElement("p");
-        p.innerHTML = `Image ID: <span>${i['image_id']}</span> was added to ${ i.value > 0 ? "Likes" : "Dislikes"}`;
+        p.innerHTML = `Image ID: <span>${i['image_id']}</span> was added to `;
+        if (i.hasOwnProperty('value')) {
+            p.innerHTML += i.value > 0 ? "Likes" : "Dislikes";
+            log.appendChild(p);
+            log.innerHTML += ((i.value > 0) ? smileSvg : sadSvg);
+        } else {
+            p.innerHTML += 'Favourites';
+            log.appendChild(p);
+            log.innerHTML += likeSvg;
+        }
+        // p.innerHTML = `Image ID: <span>${i['image_id']}</span> was added to ${ i.value > 0 ? "Likes" : "Dislikes"}`;
         // console.log(date);
-        log.appendChild(p);
-        log.innerHTML = log.innerHTML + ((i.value > 0) ? smileSvg : sadSvg);
         logs.appendChild(log);
     }
     // console.log(votes[0]);
@@ -265,7 +276,7 @@ function limitBreeds(element){
     breedsBreeds.value = "0";
     breeds.list = breeds.fullList.slice(breeds.dict.page * breeds.dict.limit,
         (breeds.dict.page + 1) * breeds.dict.limit);
-    void changePage(breeds, false);
+    void changePage(breeds, galleryContent, false);
 }
 
 function sortListener(element) {
@@ -282,7 +293,7 @@ function sortListener(element) {
     }
     breeds.list = breeds.fullList.slice(breeds.dict.page * breeds.dict.limit,
         (breeds.dict.page + 1) * breeds.dict.limit);
-    void changePage(breeds, false);
+    void changePage(breeds, galleryContent, false);
     /* CHECKBOX
     breeds.dict.page = 0;
     let checkBoxes = document.querySelectorAll('input[name="sort"]:checked');
@@ -311,7 +322,7 @@ async function breedsListener(element) {
         breeds.list = breeds.fullList.slice(breeds.dict.page * breeds.dict.limit,
             (breeds.dict.page + 1) * breeds.dict.limit);
     }
-    await changePage(breeds, false);
+    await changePage(breeds, galleryContent, false);
     next.setAttribute("disabled", "");
 }
 
@@ -371,7 +382,7 @@ function limitGallery(element){
 
     gallery.dict.limit = element.options[element.selectedIndex].value;
 
-    void changePage(gallery);
+    void changePage(gallery, galleryContent);
 }
 
 function prevPage(element, params) {
@@ -381,7 +392,7 @@ function prevPage(element, params) {
 
     if (params.dict.page > 0) {
         params.dict.page--;
-        void changePage(params, checking(params));
+        void changePage(params, galleryContent, checking(params));
     }
 }
 
@@ -392,7 +403,7 @@ function nextPage(element, params) {
     let pages = params.listLength/params.dict.limit;
     if (params.dict.page < pages) {
         params.dict.page++;
-        void changePage(params, checking(params));
+        void changePage(params, galleryContent, checking(params));
     }
 }
 
@@ -401,7 +412,7 @@ function orderListener(element) {
     gallery.dict.page = 0;
     prev.setAttribute("disabled", "");
     gallery.dict.order = element.options[element.selectedIndex].value;
-    void changePage(gallery);
+    void changePage(gallery, galleryContent);
 }
 
 function galleryBreedsListener(element) {
@@ -409,7 +420,7 @@ function galleryBreedsListener(element) {
     gallery.dict.page = 0;
     let breed = element.options[element.selectedIndex].value;
     gallery.dict.breed_id = (breed === "none") ? null : breed;
-    void changePage(gallery);
+    void changePage(gallery, galleryContent);
 }
 
 function typeListener(element) {
@@ -417,10 +428,10 @@ function typeListener(element) {
     gallery.dict.page = 0;
     let type = element.options[element.selectedIndex].value;
     gallery.dict.mime_types = (type === "none") ? null : type;
-    void changePage(gallery);
+    void changePage(gallery, galleryContent);
 }
 
-async function changePage(params, queryBool=true) {
+async function changePage(params, grid, queryBool=true) {
     if (!(params instanceof QueryParams)) {
         throw new Error("Invalid type param");
     }
@@ -441,7 +452,7 @@ async function changePage(params, queryBool=true) {
     }
 
 
-    let items = mainContent.getElementsByClassName("item");
+    let items = grid.getElementsByClassName("item");//galleryContent.getElementsByClassName("item");
 
     if (Math.min(params.list.length, params.dict.limit) !== items.length) {
         itemGenerator(Math.min(params.list.length, params.dict.limit));
@@ -464,10 +475,10 @@ async function changePage(params, queryBool=true) {
 }
 
 function itemGenerator(curLimit) {
-    let items = mainContent.getElementsByClassName(`item`).length;
+    let items = galleryContent.getElementsByClassName(`item`).length;
 
     if (curLimit !== items) {
-        let sections = mainContent.getElementsByTagName("section");
+        let sections = galleryContent.getElementsByTagName("section");
 
         let section, item, p;
         section = sections[sections.length - 1];
@@ -475,13 +486,14 @@ function itemGenerator(curLimit) {
             for (let i = 0; i < curLimit - items; i++) {
                 if (section == null || section.childElementCount % 5 === 0) {
                     section = document.createElement("section");
-                    mainContent.append(section);
+                    galleryContent.append(section);
                 }
 
                 item = document.createElement("div");
                 item.setAttribute("class", `item`);
                 item.style.setProperty("--background", "none");
                 item.innerHTML = likeSvg;
+                item.getElementsByTagName("svg")[0].classList.add("gallery-selector");
                 item.addEventListener('click', clickListener);
                 p = document.createElement("p");
                 p.setAttribute("class", "breeds-selector");
@@ -489,7 +501,7 @@ function itemGenerator(curLimit) {
                 section.appendChild(item);
             }
         } else {
-            let items = mainContent.getElementsByClassName(`item`);
+            let items = galleryContent.getElementsByClassName(`item`);
             let parent;
 
             for (let i = items.length - 1; i >= curLimit; i--) {
